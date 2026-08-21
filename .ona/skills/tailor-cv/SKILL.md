@@ -44,6 +44,13 @@ Copy `cv_master.tex` to `<year>/<company-role>/cv.tex`, then adapt:
   dates, metrics, or skills. If a required skill is missing, tell the user.
 - Write like a human: concrete metrics, specific tool/team names, varied
   sentence length. Avoid the AI-filler word list in the reference.
+- Never name the TARGET company (the employer being applied to) in the tailored
+  CV, the job title line, the file name, the folder name, or commit messages.
+  The user may be applying discreetly and does not want colleagues to know.
+  Refer to the target role generically (e.g. "PKS Data Scientist"), never
+  "<Company> PKS Data Scientist". This applies ONLY to the target employer -
+  the user's genuine PAST employers (including in `cv_master.tex`) must be kept
+  by name as real work history.
 
 ### 5. Enforce ATS-safe characters (mandatory)
 Rewrite the tailored source to ASCII, then verify it is clean:
@@ -120,3 +127,8 @@ It MUST exit 0.
   the rendered PDF text layer.
 - Never fabricate experience to match keywords.
 - Never keyword-stuff or use hidden text.
+- Never mention the TARGET company's name anywhere in a tailored CV or its
+  surrounding files (CV text, title line, file name, folder name, job-offer.txt
+  header, keywords.md, or commit messages). Keep the user's real PAST employers
+  named in `cv_master.tex` and in tailored CVs - the restriction is only on the
+  employer being applied to.
