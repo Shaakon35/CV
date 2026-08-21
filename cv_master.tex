@@ -159,6 +159,12 @@
 % within a column (e.g. before Languages / Computing).
 \newcommand{\skillheadgap}[1]{\vspace{10pt}\noindent\textbf{\color{accent}#1}\par\vspace{1pt}}
 
+% Keyword-list skill group: bold label on its own line, then a comma-separated
+% list of keywords. Fully ATS-readable (plain text) and denser than rating bars.
+% \skilllist{Label}{keyword, keyword, ...}
+\newcommand{\skilllist}[2]{%
+  \vspace{4pt}\noindent\textbf{\color{accent}#1}\par\vspace{1pt}\noindent #2\par}
+
 \setlist[itemize]{leftmargin=1.1em, itemsep=1pt, topsep=1pt, parsep=0pt}
 \pagestyle{empty}
 
@@ -194,10 +200,20 @@
   \begin{center}\headertext\end{center}
 \fi
 
+% ----- profile summary --------------------------------------
+\section{Profile}
+\vspace{2pt}
+\noindent Senior Data Scientist with 6+ years in clinical pharmacometrics and
+PK/PD data science across Roche, Novartis, and Sanofi. Built and led aNCA, an
+open-source R package adopted by 120+ scientists, delivering more than 1.5M CHF
+in annual savings. Combines regulatory-grade R, NONMEM, and CDISC (SDTM/ADaM)
+data engineering with Agile product ownership and AI-assisted automation,
+supporting molecules from Phase 1 to market.
+
 % ----- work experience --------------------------------------
 \section{Work Experience}
 
-\rolel{Senior Data Scientist}{F. Hoffmann-La Roche, Basel, Switzerland}{2020 to now}{roche}{9.6pt}
+\rolel{Senior Data Scientist}{F. Hoffmann-La Roche, Basel, Switzerland}{2020 to Present}{roche}{9.6pt}
 \begin{itemize}
   \item Engineered end-to-end PK/PD analysis workflows, from data acquisition
         and preparation to modeling and reporting, across multiple therapeutic
@@ -215,15 +231,14 @@
         from Phase 1 to market, such as COLUMVI(R) (glofitamab) drug.
   \item Led a process improvement initiative: automation of ADPC, ADNCA, and
         ADPP datasets by converting legacy SAS programs into reproducible R
-        pipelines, leveraging AI-assisted tools to accelerate development and
-        reduce manual effort by 90\%. This new process is now used by 30 data
-        scientists, saving them 50\% of their time on these tasks.
+        pipelines, reducing manual effort by 90\%. This new process is now used
+        by 30 data scientists, saving them 50\% of their time on these tasks.
   \item Collaborated with clinical, statistical, and pharmacometric teams to
         ensure data integrity and deliver custom analysis tools, streamlining
         modeling and simulation activities.
 \end{itemize}
 
-\rolel{\link{https://github.com/pharmaverse/aNCA}{aNCA} Product Owner}{F. Hoffmann-La Roche, Basel, Switzerland}{2023 to now}{anca}{14pt}
+\rolel{\link{https://github.com/pharmaverse/aNCA}{aNCA} Product Owner}{F. Hoffmann-La Roche, Basel, Switzerland}{2023 to Present}{anca}{14pt}
 \begin{itemize}
   \item Directed the end-to-end product lifecycle of the 'aNCA' open-source R
         package using an Agile/Scrum framework, driving it from concept to
@@ -245,7 +260,7 @@
         interpretation bot (Python).
 \end{itemize}
 
-\rolel{IT/Data Science Developer}{F. Hoffmann-La Roche, Basel, Switzerland}{March to August 2020}{roche}{9.6pt}
+\rolel{IT/Data Science Developer}{F. Hoffmann-La Roche, Basel, Switzerland}{Mar 2020 to Aug 2020}{roche}{9.6pt}
 \begin{itemize}
   \item Translated pharma scientists' requirements into IT/Data science tasks.
   \item Deployed several tools with R Shiny (data visualization) to support
@@ -258,41 +273,33 @@
 
 \rolel{Data Scientist}{COFIDIS, Lille, France}{Oct 2019 to Feb 2020}{cofidis}{8.7pt}
 \begin{itemize}
-  \item Data cleaning, data analysis, and data science on customer loan data
-        with R.
-  \item Predicted contract return with machine learning methods such as Logistic
-        Regression, Gradient Boosting, and Random Forest.
+  \item Analyzed customer loan data in R and built machine learning models
+        (Logistic Regression, Gradient Boosting, Random Forest) to predict
+        contract default.
   \item Recommended data collection strategies to optimize the rate of returned
         and completed contracts.
 \end{itemize}
 
-\rolel{Biostatistical Application Developer}{Novartis AG, Basel, Switzerland}{May to Aug 2019}{novartis}{7.5pt}
+\rolel{Biostatistical Application Developer}{Novartis AG, Basel, Switzerland}{May 2019 to Aug 2019}{novartis}{7.5pt}
 \begin{itemize}
-  \item Developed an R Shiny application to visualize clinical data (tables,
-        figures and listings) dynamically and interactively during DMC (Data
-        Monitoring Committee) reviews.
-  \item Created dynamic and interactive HTML reports with R Markdown (dplyr,
-        plyr, ggplot, plotly, DT packages).
-  \item Generalized the application to apply across different studies.
-  \item Worked with clinical data, especially ADaM and SDTM datasets (CDISC
-        formats).
+  \item Built an R Shiny application to visualize clinical data (tables, figures
+        and listings) interactively during DMC (Data Monitoring Committee)
+        reviews, and generalized it across studies.
+  \item Created dynamic HTML reports with R Markdown (dplyr, ggplot, plotly, DT)
+        using ADaM and SDTM datasets (CDISC formats).
 \end{itemize}
 
-\rolel{SAS Developer}{Sanofi R\&D, Paris, France}{June to Aug 2018}{sanofi}{12.8pt}
+\rolel{SAS Developer}{Sanofi R\&D, Paris, France}{Jun 2018 to Aug 2018}{sanofi}{12.8pt}
 \begin{itemize}
-  \item Created a tool to automate data mapping (precise structure) and generated
-        XML files for an artificial intelligence project.
-  \item Developed, validated and referenced SAS programs for dataset creation and
-        reporting: tables, listings and figures.
-  \item Applied SAS/BASE, SAS/MACRO, and SAS/SQL programming.
-  \item Used SDTM/ADaM formats and specifications (metadata files).
+  \item Developed and validated SAS (BASE/MACRO/SQL) programs for TLG reporting
+        and built a data-mapping tool generating XML for an AI project, using
+        SDTM/ADaM specifications.
 \end{itemize}
 
-\rolel{SAS and IT Developer}{Sanofi R\&D, Paris, France}{April to Aug 2017}{sanofi}{12.8pt}
+\rolel{SAS and IT Developer}{Sanofi R\&D, Paris, France}{Apr 2017 to Aug 2017}{sanofi}{12.8pt}
 \begin{itemize}
-  \item Adapted SAS programs to a new statistical environment.
-  \item Worked on applications to optimize, improve and develop SAS programs on
-        clinical trials data, enabling biostatisticians to perform their tasks.
+  \item Migrated and optimized SAS programs for clinical trial data in a new
+        statistical environment, enabling biostatisticians to run their analyses.
 \end{itemize}
 
 % ----- education --------------------------------------------
@@ -307,27 +314,18 @@
 \section{Skills}
 
 \noindent\begin{minipage}[t]{0.48\linewidth}
-  \skillhead{Statistics / Data Science}
-  \skill{Statistical programming}{5}
-  \skill{Data visualization}{5}
-  \skill{Descriptive statistics}{5}
-  \skill{Biostatistics}{5}
-  \skillheadgap{Languages}
+  \skilllist{Pharmacometrics \& Clinical Data}{R, NONMEM, Phoenix/WinNonlin,
+    PK/PD modeling, NCA, CDISC (SDTM/ADaM), biostatistics, GxP}
+  \skilllist{Data Science \& Engineering}{Python, machine learning, SQL,
+    Git, CI/CD, Agile/Scrum, LLMs / AI-assisted tooling}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+  \skilllist{Visualization \& Reporting}{R Shiny, ggplot, Spotfire, Tableau,
+    SAS, R Markdown, MS Office (incl. VBA)}
+  \skillhead{Languages}
   \skill{English (Fluent)}{5}
   \skill{French (Native)}{5}
   \skill{Spanish (B2)}{3}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.48\linewidth}
-  \skillhead{Software}
-  \skill{R (Tidyverse, Shiny)}{5}
-  \skill{Python}{4}
-  \skill{Spotfire / Tableau}{4}
-  \skill{SAS}{4}
-  \skillheadgap{Computing}
-  \skill{MS Office (incl. VBA)}{5}
-  \skill{Git \& Linux}{5}
-  \skill{Database / SQL}{4}
-  \skill{HTML, CSS, PHP}{3}
 \end{minipage}
 
 % ----- publications -----------------------------------------
