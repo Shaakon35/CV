@@ -119,6 +119,9 @@
     \textit{#2} & \\
   \end{tabularx}%
 }
+% Employment-type tag next to a role title (e.g. Internship, Apprenticeship).
+% Rendered 3pt smaller than the body and in the muted grey, no parentheses.
+\newcommand{\emptype}[1]{{\textcolor{muted}{\fontsize{7}{8}\selectfont #1}}}
 % \rolel{title}{org}{dates}{logo}{logo height}
 \newcommand{\rolel}[5]{%
   \vspace{7pt}
@@ -256,7 +259,7 @@ accelerate delivery, supporting molecules from Phase 1 to market.
         interpretation bot (Python).
 \end{itemize}
 
-\rolel{IT/Data Science Developer (Internship)}{F. Hoffmann-La Roche, Basel, Switzerland}{Mar 2020 to Aug 2020}{roche}{9.6pt}
+\rolel{IT/Data Science Developer~\emptype{Internship}}{F. Hoffmann-La Roche, Basel, Switzerland}{Mar 2020 to Aug 2020}{roche}{9.6pt}
 \begin{itemize}
   \item Translated pharma scientists' requirements into IT/Data science tasks.
   \item Deployed several tools with R Shiny (data visualization) to support
@@ -267,7 +270,7 @@ accelerate delivery, supporting molecules from Phase 1 to market.
   \item Automated PowerPoint reports with R (officer package) for daily reports.
 \end{itemize}
 
-\rolel{Data Scientist (Apprenticeship)}{COFIDIS, Lille, France}{Oct 2019 to Feb 2020}{cofidis}{8.7pt}
+\rolel{Data Scientist~\emptype{Apprenticeship}}{COFIDIS, Lille, France}{Oct 2019 to Feb 2020}{cofidis}{8.7pt}
 \begin{itemize}
   \item Analyzed customer loan data in R and built machine learning models
         (Logistic Regression, Gradient Boosting, Random Forest) to predict
@@ -276,7 +279,7 @@ accelerate delivery, supporting molecules from Phase 1 to market.
         and completed contracts.
 \end{itemize}
 
-\rolel{Biostatistical Application Developer (Internship)}{Novartis AG, Basel, Switzerland}{May 2019 to Aug 2019}{novartis}{13.8pt}
+\rolel{Biostatistical Application Developer~\emptype{Internship}}{Novartis AG, Basel, Switzerland}{May 2019 to Aug 2019}{novartis}{13.8pt}
 \begin{itemize}
   \item Built an R Shiny application to visualize clinical data (tables, figures
         and listings) interactively during DMC (Data Monitoring Committee)
@@ -285,14 +288,14 @@ accelerate delivery, supporting molecules from Phase 1 to market.
         using ADaM and SDTM datasets (CDISC formats).
 \end{itemize}
 
-\rolel{SAS Developer (Internship)}{Sanofi R\&D, Paris, France}{Jun 2018 to Aug 2018}{sanofi}{12.8pt}
+\rolel{SAS Developer~\emptype{Internship}}{Sanofi R\&D, Paris, France}{Jun 2018 to Aug 2018}{sanofi}{12.8pt}
 \begin{itemize}
   \item Developed and validated SAS (BASE/MACRO/SQL) programs for TLG reporting
         and built a data-mapping tool generating XML for an AI project, using
         SDTM/ADaM specifications.
 \end{itemize}
 
-\rolel{SAS and IT Developer (Internship)}{Sanofi R\&D, Paris, France}{Apr 2017 to Aug 2017}{sanofi}{12.8pt}
+\rolel{SAS and IT Developer~\emptype{Internship}}{Sanofi R\&D, Paris, France}{Apr 2017 to Aug 2017}{sanofi}{12.8pt}
 \begin{itemize}
   \item Migrated and optimized SAS programs for clinical trial data in a new
         statistical environment, enabling biostatisticians to run their analyses.
