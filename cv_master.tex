@@ -68,8 +68,8 @@
 
 % Company logo shown next to a role title. \rolelogo{logo}{height}
 % Symbol logos are sized for equal visual area (area = aspect * height^2,
-% target ~170 pt^2): roche 9.6  anca 14.0  sanofi 12.8  cofidis 8.7.
-% novartis is a wordmark, so it is sized to text cap-height (7.5pt) instead.
+% target ~170 pt^2): roche 9.6  anca 14.0  sanofi 12.8  cofidis 8.7
+% novartis 13.8 (flame symbol, near-square).
 \newcommand{\rolelogo}[2]{\logoifexists{#1}{#2}}
 
 % Header photo. Drop your portrait at assets/photo.jpg (or .png). If absent,
@@ -173,8 +173,8 @@
 \begin{document}
 
 % ----- header -----------------------------------------------
-% Two columns: name + contact on the left, portrait photo on the right.
-% Falls back to a centered, full-width text block if no photo is present.
+% Two columns: portrait photo on the left, name + contact next to it (with a
+% margin). Falls back to a centered, full-width text block if no photo present.
 \newcommand{\headertext}{%
   {\Huge\bfseries\color{accent} Valentin Legras}\\[4pt]
   {\large\color{muted} Senior Data Scientist}\\[6pt]
@@ -190,11 +190,12 @@
 }
 
 \ifphoto
-  \noindent\begin{minipage}[c]{0.72\linewidth}
+  \noindent\begin{minipage}[c]{0.26\linewidth}
+    \raggedright\headerphoto
+  \end{minipage}%
+  \hspace{0.5cm}% margin between photo and text
+  \begin{minipage}[c]{0.70\linewidth}
     \raggedright\headertext
-  \end{minipage}\hfill
-  \begin{minipage}[c]{0.26\linewidth}
-    \raggedleft\headerphoto
   \end{minipage}
   \vspace{4pt}
 \else
@@ -281,7 +282,7 @@ supporting molecules from Phase 1 to market.
         and completed contracts.
 \end{itemize}
 
-\rolel{Biostatistical Application Developer}{Novartis AG, Basel, Switzerland}{May 2019 to Aug 2019}{novartis}{7.5pt}
+\rolel{Biostatistical Application Developer}{Novartis AG, Basel, Switzerland}{May 2019 to Aug 2019}{novartis}{13.8pt}
 \begin{itemize}
   \item Built an R Shiny application to visualize clinical data (tables, figures
         and listings) interactively during DMC (Data Monitoring Committee)
