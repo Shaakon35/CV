@@ -1,0 +1,397 @@
+%==============================================================
+%  CV - Valentin Legras - master CV
+%  Compile with:  tectonic cv_master.tex
+%  ATS-safe: plain ASCII text layer, no bullet/rating glyphs, no icon fonts.
+%
+%  HARD RULE: this CV must never exceed 2 PAGES. After any edit, verify with
+%  `pdfinfo cv_master.pdf | grep Pages` and tighten content/spacing until it
+%  fits. See .ona/skills/tailor-cv/SKILL.md step 6a for the trimming order.
+%
+%  LINKS: replace the \href{URL}{...} placeholders marked "REPLACE URL" with
+%  your real links. You do NOT need to copy them from the PDF - just paste the
+%  URLs to Ona in chat and they will be filled in.
+%==============================================================
+\documentclass[10pt,a4paper]{article}
+
+% ----- packages ---------------------------------------------
+% Keeps the PDF text layer ATS-safe under XeTeX/Tectonic:
+%  - Mapping=          straight ' and " stay as U+0027 / U+0022 (no curly quotes)
+%  - Ligatures=NoCommon disables fi/fl ligatures (single-glyph parser breakers)
+% Requires the Latin Modern OpenType fonts (fonts-lmodern; installed in CI).
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}[Mapping=, Ligatures=NoCommon]
+\usepackage[margin=1.1cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{calc}           % lets \raisebox parse length expressions (a\height + b ex)
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}            % vector dots for skill ratings (ATS-safe: no glyphs)
+\usepackage[normalem]{ulem} % \uline underlines links, breaks across lines; keeps \emph italic
+
+% ---- logo support ------------------------------------------
+% Logos are IMAGES, which are ATS-safe: an embedded picture contributes nothing
+% to the PDF text layer (unlike icon fonts). Put PNG/PDF files in
+% assets/logos/ named exactly as referenced below. If a file is missing, the
+% macros below fall back to plain text so the CV always builds.
+\graphicspath{{../../assets/logos/}}
+
+% \haslogo{name} is true only if assets/logos/<name>.png (or .pdf) exists.
+% No raisebox here: the caller controls vertical alignment so it can be tuned
+% per context (header vs. role line) without double-shifting.
+\newcommand{\logoifexists}[2]{% #1 = file basename, #2 = height
+  \IfFileExists{../../assets/logos/#1.png}{\includegraphics[height=#2]{#1.png}}{%
+  \IfFileExists{../../assets/logos/#1.pdf}{\includegraphics[height=#2]{#1.pdf}}{}}%
+}
+% Vertically centre a logo on the current text line (aligns the logo's midline
+% with the text midline, so logos read as sitting "next to" the words).
+\newcommand{\vcenterlogo}[2]{\raisebox{-0.5\height+0.5ex}{\logoifexists{#1}{#2}}}
+
+% Phone icon: classic filled telephone receiver (Font Awesome style) as an
+% image logo in assets/logos/phone.png. ATS-safe (adds nothing to the text
+% layer). Vertically centred on the text line via \vcenterlogo.
+\newcommand{\phoneicon}{\vcenterlogo{phone}{9pt}}
+
+% Header link with logo + readable text.  \linklogo{url}{logo}{visible text}
+\newcommand{\linklogo}[3]{\href{#1}{\logoifexists{#2}{9pt}\,#3}}
+
+% Company logo shown next to a role title. \rolelogo{logo}{height}
+% Symbol logos are sized for equal visual area (area = aspect * height^2,
+% target ~170 pt^2): roche 9.6  anca 14.0  sanofi 12.8  cofidis 8.7
+% novartis 13.8 (flame symbol, near-square).
+\newcommand{\rolelogo}[2]{\logoifexists{#1}{#2}}
+
+% Header photo. Drop your portrait at assets/photo.jpg (or .png). If absent,
+% the header simply uses the full width for text. A photo is fine for CVs in
+% CH/EU; it lives in an image, so it never affects the ATS text layer.
+% Rendered inside a rounded-corner clip for a modern look (TikZ, image only).
+% Resolve the photo path into \photofile (jpg preferred, then png).
+\newcommand{\photofile}{}
+\IfFileExists{../../assets/photo.jpg}{\renewcommand{\photofile}{../../assets/photo.jpg}}{%
+ \IfFileExists{../../assets/photo.png}{\renewcommand{\photofile}{../../assets/photo.png}}{}}
+\newcommand{\headerphoto}{%
+  \begin{tikzpicture}
+    % Rounded box; image fills by height and is centred, overflow clipped
+    % (crop-to-fill), so the portrait is never distorted.
+    \clip[rounded corners=6pt] (0,0) rectangle (2.7cm,3.3cm);
+    \node[inner sep=0] at (1.35cm,1.65cm)
+      {\includegraphics[height=3.3cm]{\photofile}};
+  \end{tikzpicture}%
+}
+% Boolean: true if a portrait photo file exists.
+\newif\ifphoto
+\IfFileExists{../../assets/photo.jpg}{\phototrue}{\IfFileExists{../../assets/photo.png}{\phototrue}{\photofalse}}
+
+% ATS-safe list marker: a plain hyphen, not a bullet glyph.
+\renewcommand{\labelitemi}{-}
+
+% ----- colours ----------------------------------------------
+\definecolor{accent}{HTML}{2C3E50}
+\definecolor{muted}{HTML}{7F8C8D}
+\definecolor{barfill}{HTML}{2C3E50}
+\definecolor{barempty}{HTML}{D5DBDB}
+\definecolor{linkblue}{HTML}{1A5FB4}  % clickable text links
+
+% hidelinks: no coloured border boxes. All link styling is applied manually via
+% \link below, so logo/image links stay clean while text links get blue+underline.
+\hypersetup{hidelinks}
+
+% Clickable text link: blue and underlined. \link{url}{visible text}
+% \uline underlines and wraps across line breaks; ATS-safe (text layer unchanged).
+\newcommand{\link}[2]{\href{#1}{\textcolor{linkblue}{\uline{#2}}}}
+
+% ----- section styling --------------------------------------
+\titleformat{\section}
+  {\large\bfseries\color{accent}}
+  {}{0em}{}[\color{accent}\titlerule]
+\titlespacing{\section}{0pt}{4pt}{2pt}
+
+% ----- helpers ----------------------------------------------
+% \role{title}{org, location}{dates}          - no logo
+% \rolel{title}{org, location}{dates}{logo}   - with a logo next to the title
+\newcommand{\role}[3]{%
+  \vspace{5pt}
+  \noindent\begin{tabularx}{\linewidth}{@{}Xr@{}}
+    \textbf{#1} & \textcolor{muted}{#3} \\
+    \textit{#2} & \\
+  \end{tabularx}%
+}
+% Employment-type tag next to a role title (e.g. Internship, Apprenticeship).
+% Rendered 3pt smaller than the body, italic (not bold), in the muted grey,
+% no parentheses. \normalfont clears the surrounding \textbf so it is not bold.
+\newcommand{\emptype}[1]{{\normalfont\textcolor{muted}{\fontsize{7}{8}\selectfont \textit{#1}}}}
+% \rolel{title}{org}{dates}{logo}{logo height}
+\newcommand{\rolel}[5]{%
+  \vspace{5pt}
+  \noindent\begin{tabularx}{\linewidth}{@{}Xr@{}}
+    \textbf{#1}~\vcenterlogo{#4}{#5} & \textcolor{muted}{#3} \\
+    \textit{#2} & \\
+  \end{tabularx}%
+}
+
+% \skill{name}{level 1-5} - drawn dots, leave no characters in the text layer.
+% Filled dot = attained level (accent colour), open/outline dot = remaining.
+% Dots are TikZ vector graphics, so nothing lands in the ATS text layer.
+\newcommand{\dotfull}{\tikz[baseline=-0.4ex]\fill[barfill] (0,0) circle (1.6pt);}
+\newcommand{\dotempty}{\tikz[baseline=-0.4ex]\draw[barfill,line width=0.4pt] (0,0) circle (1.5pt);}
+\newcommand{\barfive}[1]{%
+  \ifnum#1>0\dotfull\else\dotempty\fi\;%
+  \ifnum#1>1\dotfull\else\dotempty\fi\;%
+  \ifnum#1>2\dotfull\else\dotempty\fi\;%
+  \ifnum#1>3\dotfull\else\dotempty\fi\;%
+  \ifnum#1>4\dotfull\else\dotempty\fi%
+}
+\newcommand{\skill}[2]{%
+  \noindent\begin{tabularx}{\linewidth}{@{}X r@{}}
+    #1 & \barfive{#2} \\
+  \end{tabularx}%
+  \vspace{1pt}
+}
+
+\newcommand{\skillhead}[1]{\vspace{3pt}\noindent\textbf{\color{accent}#1}\par\vspace{1pt}}
+% Same as \skillhead but with extra space above, to separate skill groups
+% within a column (e.g. before Languages / Computing).
+\newcommand{\skillheadgap}[1]{\vspace{10pt}\noindent\textbf{\color{accent}#1}\par\vspace{1pt}}
+
+% Keyword-list skill group: bold label on its own line, then a comma-separated
+% list of keywords. Fully ATS-readable (plain text) and denser than rating bars.
+% \skilllist{Label}{keyword, keyword, ...}
+\newcommand{\skilllist}[2]{%
+  \vspace{4pt}\noindent\textbf{\color{accent}#1}\par\vspace{1pt}\noindent #2\par}
+
+\setlist[itemize]{leftmargin=1.1em, itemsep=0pt, topsep=1pt, parsep=0pt}
+\pagestyle{empty}
+
+%==============================================================
+\begin{document}
+
+% ----- header -----------------------------------------------
+% Two columns: portrait photo on the left, name + contact next to it (with a
+% margin). Falls back to a centered, full-width text block if no photo present.
+\newcommand{\headertext}{%
+  {\Huge\bfseries\color{accent} Valentin Legras}\\[4pt]
+  {\large\color{muted} Data Scientist \& Scientific Software Engineer}\\[6pt]
+  % Plain-text contact line (no icon fonts).
+  Basel, Switzerland\\[2pt]
+  % Phone: TikZ icon (clickable tel: link) + number kept as text so ATS/Workday
+  % can still read and autofill it.
+  \href{tel:+41793456895}{\phoneicon}\ +41 79 345 68 95 \\[5pt]
+  % Header links: clickable logos only, on one line separated by two spaces.
+  \href{mailto:valentin.legras2@gmail.com}{\vcenterlogo{gmail}{11pt}}\ \ %
+  \href{https://www.linkedin.com/in/valentin-legras/}{\vcenterlogo{linkedin}{11pt}}\ \ %
+  \href{https://github.com/Shaakon35}{\vcenterlogo{github}{11pt}}%
+}
+
+\ifphoto
+  \noindent\begin{minipage}[c]{2.7cm}% width = photo width, no extra gap
+    \headerphoto
+  \end{minipage}%
+  \hspace{0.4cm}% margin between photo and text
+  \begin{minipage}[c]{\dimexpr\linewidth-2.7cm-0.4cm\relax}
+    \raggedright\headertext
+  \end{minipage}
+  \vspace{4pt}
+\else
+  \begin{center}\headertext\end{center}
+\fi
+
+% ----- profile summary --------------------------------------
+\section{Summary}
+\vspace{2pt}
+\noindent Data Scientist and scientific software engineer with 7+ years turning
+large-scale PK/PD and experimental datasets into decision-enabling tools across
+clinical and preclinical drug development at Roche, Novartis, and Sanofi. Founded
+and led aNCA, a production-grade open-source R package adopted by 120+ scientists,
+applying strong software engineering practices (version control, testing,
+documentation, CI/CD) to build scalable, reusable analytical workflows. Combines
+machine learning and statistics with R and Python to automate analysis, uncover
+structure in complex data, and communicate findings to multidisciplinary
+stakeholders. Delivered more than 2M CHF in annual savings and scales AI/ML and
+multi-agent coding workflows to accelerate scientific decision making.
+
+% ----- work experience --------------------------------------
+\section{Experience}
+
+\rolel{Senior Data Scientist}{F. Hoffmann-La Roche, Basel, Switzerland}{2020 to Present}{roche}{9.6pt}
+\begin{itemize}
+  \item Designed and maintained scalable data pipelines and analytical
+        applications that transform large-scale PK/PD and experimental datasets
+        into decision-enabling insights, across multiple therapeutic areas
+        (e.g., Oncology, Neuroscience) from Phase 1 to 3.
+  \item Built and deployed interactive data visualization and exploratory
+        analysis tools in R/Shiny and Spotfire, enabling real-time data review
+        and faster cross-functional decisions on complex experimental data.
+  \item Engineered reproducible data pipelines by converting legacy SAS programs
+        into production R workflows for ADPC, ADNCA, and ADPP datasets, cutting
+        manual effort by 90\%; now used by 30 data scientists, saving 70\% of
+        their time.
+  \item Led creation of analysis-ready NCA, PK/PD, and CDISC (SDTM/ADaM)
+        datasets from raw data for population modeling in R, Phoenix and NONMEM.
+  \item Scaled multi-agent AI/ML coding workflows across the team (AI-augmented
+        issue creation, automated problem solving, code review), increasing
+        development velocity while upholding software engineering standards.
+  \item Authored responses to health authority queries (FDA, EMA) and managed QC
+        for regulatory submissions, communicating results to diverse scientific
+        and regulatory stakeholders.
+\end{itemize}
+
+\rolel{\link{https://github.com/pharmaverse/aNCA}{aNCA} Product Owner}{F. Hoffmann-La Roche, Basel, Switzerland}{2023 to Present}{anca}{14pt}
+\begin{itemize}
+  \item Directed the end-to-end lifecycle of the 'aNCA' open-source R package
+        under Agile/Scrum, driving it from concept to enterprise-wide adoption
+        by 120+ clinical and pre-clinical scientists, now supporting 2,000+
+        studies annually.
+  \item Championed broad adoption of a reusable, maintainable data-science tool
+        across teams, managing a 15+ stakeholder network and translating their
+        business needs into a strategically aligned product roadmap.
+  \item Extended the workflow to ingest and harmonize preclinical in vivo and
+        in vitro PK data with protocol metadata, broadening the tool to
+        pre-clinical, DMPK-adjacent use cases.
+  \item Established and enforced production software engineering standards for
+        the package, including version control, testing, documentation, and
+        rigorous code review, to ensure robust, regulatory-grade quality.
+  \item Led, coached, and mentored a core team of 7 developers, strengthening
+        data-science capabilities across the group.
+  \item Delivered more than 2M CHF in annual savings (5 FTEs plus retired
+        commercial licenses) by transforming a manual, weeks-long workflow into
+        a 90\% automated process.
+  \item Contributed to the \link{https://pharmaverse.org/}{pharmaverse} ecosystem with standardized modules
+        for automated NCA and reporting, built with Git, CI/CD, coding agents
+        (LLMs), and an LLM-based generative-AI interpretation bot in Python.
+\end{itemize}
+
+\rolel{IT/Data Science Developer~\emptype{Internship}}{F. Hoffmann-La Roche, Basel, Switzerland}{Mar 2020 to Aug 2020}{roche}{9.6pt}
+\begin{itemize}
+  \item Translated pharma scientists' requirements into data-science solutions,
+        partnering with wet-lab process modelers and formulators.
+  \item Designed and deployed R/Shiny applications for data visualization and
+        exploration, built on the tidyverse.
+  \item Built, tested, and deployed applications with Git, Jenkins, and Google
+        Cloud Platform (GCP), applying CI/CD practices.
+  \item Automated data management, merging, and reporting workflows in R
+        (officer package), reducing manual effort on recurring deliverables.
+\end{itemize}
+
+\rolel{Data Scientist~\emptype{Apprenticeship}}{Cofidis, Lille, France}{Oct 2019 to Feb 2020}{cofidis}{8.7pt}
+\begin{itemize}
+  \item Developed and evaluated machine learning models in R (Logistic
+        Regression, Gradient Boosting, Random Forest) to predict contract
+        default, applying explainable-AI techniques (feature importance, SHAP)
+        to surface the drivers most predictive of outcome.
+  \item Recommended data-collection strategies from the findings to optimize the
+        rate of returned and completed contracts.
+\end{itemize}
+
+\rolel{Biostatistical Application Developer~\emptype{Internship}}{Novartis AG, Basel, Switzerland}{May 2019 to Aug 2019}{novartis}{13.8pt}
+\begin{itemize}
+  \item Built and generalized an R/Shiny application to interactively visualize
+        clinical data during DMC (Data Monitoring Committee) reviews, and dynamic
+        R Markdown reports (ggplot, plotly, DT) from CDISC (SDTM/ADaM) datasets.
+\end{itemize}
+
+\rolel{SAS Developer~\emptype{Internship}}{Sanofi R\&D, Paris, France}{Jun 2018 to Aug 2018}{sanofi}{12.8pt}
+\begin{itemize}
+  \item Developed and validated SAS (BASE/MACRO/SQL) programs for TLG reporting
+        and built a data-mapping tool generating XML for an AI project, using
+        SDTM/ADaM specifications.
+\end{itemize}
+
+\rolel{SAS and IT Developer~\emptype{Internship}}{Sanofi R\&D, Paris, France}{Apr 2017 to Aug 2017}{sanofi}{12.8pt}
+\begin{itemize}
+  \item Migrated and optimized SAS programs for clinical trial data in a new
+        statistical environment, enabling biostatisticians to run their analyses.
+\end{itemize}
+
+% ----- skills -----------------------------------------------
+\section{Skills}
+
+\noindent\begin{minipage}[t]{0.48\linewidth}
+  \skilllist{Data Science \& Machine Learning}{Python, R, machine learning
+    (Logistic Regression, Gradient Boosting, Random Forest), explainable AI
+    (SHAP), generative AI/LLMs, statistics, reproducible workflows, EDA,
+    data mining}
+  \skilllist{Software Engineering}{version control (Git), testing,
+    documentation, CI/CD, production-quality code, R package development, SQL,
+    Linux, HPC}
+  \skilllist{Pharmacokinetics \& Data}{PK/PD modeling, NCA, PBPK/DMPK,
+    NONMEM, Phoenix/WinNonlin, CDISC (SDTM/ADaM), biostatistics, GxP}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+  \skilllist{Applications \& Deployment}{R/Shiny, data pipelines, GCP,
+    Jenkins, Spotfire/Tableau, ggplot, R Markdown}
+  \skilllist{AI \& Automation}{Claude (Sonnet/Opus), coding agents (Ona,
+    Claude Code), multi-agent workflows, LLM-assisted development, prompt
+    engineering}
+  \skilllist{Leadership \& Delivery}{product ownership, Agile/Scrum, team
+    leadership, mentoring, stakeholder management, cross-functional
+    collaboration}
+  \skillhead{Languages}
+  \skill{English (Fluent)}{5}
+  \skill{French (Native)}{5}
+  \skill{Spanish (B2)}{3}
+\end{minipage}
+
+% ----- education --------------------------------------------
+\section{Educational Background}
+
+\role{Master's Degree, Software Engineering and Statistics}{Polytech Lille, Villeneuve-d'Ascq, France}{2017 to 2020}
+\vspace{1pt}
+\noindent\textcolor{muted}{\small Completed alongside internships and an apprenticeship (work-study) at Sanofi, Novartis, Cofidis, and Roche.}
+\vspace{3pt}
+
+\role{Technical Degree, Statistics and Business Intelligence}{Institut Universitaire de Technologie, Vannes, France}{2015 to 2017}
+
+% ----- publications -----------------------------------------
+% \sloppy: underlined links (ulem) disable hyphenation, so allow looser
+% inter-word spacing to keep long titles from spilling into the right margin.
+\section{Publications and Presentations}
+{\sloppy
+\skillhead{Peer-Reviewed Publications}
+\begin{itemize}
+  \item \link{https://www.sciencedirect.com/science/article/pii/S0378517324011256?via\%3Dihub}{Computer-Aided
+        formulation design for pharmaceutical drug product development, part 01:
+        Materials exploration through a visualization tool.} Piccione P.M.,
+        Lang M.N., et al. (incl. Legras V.) (2024), International Journal of
+        Pharmaceutics, Volume 667, Part B.
+  \item \link{https://ascpt.onlinelibrary.wiley.com/doi/10.1002/cpt.3386}{PBPK
+        Modeling of Entrectinib and Its Active Metabolite to Derive Dose
+        Adjustments in Pediatric Populations Co-\allowbreak Administered with
+        CYP3A4 Inhibitors.} Umehara K., Parrott N., Schindler E., Legras V.,
+        Meneses-Lorente G. (2024), Clin Pharmacol Ther, 116: 1130-1140.
+  \item \link{https://haematologica.org/article/view/11850}{Dexamethasone is
+        associated with reduced frequency and intensity of cytokine release
+        syndrome compared with alternative corticosteroid regimens as
+        premedication for glofitamab in patients with relapsed/\allowbreak refractory
+        large B-cell lymphoma.} Haematologica (2024).
+  \item Sunburst visualization method contributed to \link{https://pubmed.ncbi.nlm.nih.gov/40646322/}{Hipp
+        J.F. et al., The UBE3A-ATS antisense oligonucleotide rugonersen in
+        children with Angelman syndrome: a phase 1 trial.} Nat Med 2025;
+        31(9):2936-2945.
+\end{itemize}
+\vspace{3pt}
+\skillhead{Conference Presentations}
+\begin{itemize}
+  \item \link{https://phuse.s3.eu-central-1.amazonaws.com/Archive/2023/Connect/EU/Birmingham/PRE_DV02.pdf}{Revolutionizing
+        Data Exploration: An Interactive Journey through R Shiny.} Legras V.,
+        PHUSE 2023.
+  \item \link{https://phuse.s3.eu-central-1.amazonaws.com/Archive/2024/Connect/EU/Strasbourg/PRE_SM06.pdf}{R
+        Scripts to Streamline Non-Compartmental Analysis (NCA).} Legras V.,
+        Suekuer E., PHUSE 2024 (aNCA open-source).
+  \item \link{https://www.page-meeting.org/wp-content/uploads/pdf_assets/11030-abstract.pdf}{Sunburst
+        Plots for Analysing the Impact of Drugs on Cytokine Release Syndrome
+        (CRS) Management.} Legras V., PAGE 2024.
+  \item \link{https://phuse.s3.eu-central-1.amazonaws.com/Archive/2025/Connect/EU/Hamburg/PRE_SM05.pdf}{Automated
+        QC Framework for Reliable ADNCA Dataset Generation with admiral.}
+        Legras V., Aspridis L., PHUSE 2025.
+\end{itemize}
+\par}% end \sloppy group
+
+% ----- hobbies ----------------------------------------------
+\section{Hobbies}
+Roller skating, Ice skating, Surfing, Basketball, Cycling, Drawing, Coding
+(\link{https://shaakon35.github.io/Stock_portfolio/}{stock market analysis}).
+
+\end{document}

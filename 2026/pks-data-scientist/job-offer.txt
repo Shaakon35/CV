@@ -1,0 +1,63 @@
+Senior Expert / Senior Principal PKS Data Scientist & Scientific Software Engineer (Dual level posting)
+Aug 06, 2026
+Switzerland
+
+Summary
+#LI-Hybrid
+Location: Basel, Switzerland
+Internal Title: Senior Expert II Data Science or Senior Principal Data Science
+
+The Senior Data Scientist & Scientific Software Engineer will join the Modeling & Simulation Data Science team within the Translational Medicine Unit to help advance data-driven drug discovery. The role is focused on transforming large-scale ADME, PK, and related experimental datasets into actionable insights through advanced analytics, machine learning, and robust software engineering. Partnering closely with pharmacokinetic sciences (PKS) scientists, Data & Digital teams, and cross-functional stakeholders, this position will drive the development of scalable analytical applications, reusable computational workflows, and decision-enabling in silico solutions that accelerate lead optimization and strengthen scientific decision making.
+
+About the Role
+200+ experimental datasets are generated every day in the Pharmacokinetic Sciences (PKS) department at Biomedical Research. This role sits at the center of efforts to unlock the value of these data for decision making and to shape the future of medicine through advanced data science.
+
+As Senior Expert II / Senior Principal Data Scientist & Scientific Software Engineer, you will join the Modeling & Simulation Data Science team in the Translational Medicine Unit and work at the intersection of data science, software engineering, and drug discovery. You will apply machine learning, statistics, and modern software development practices to harness ADME and PK data, uncover structure-property relationships, and translate scientific and business needs into scalable, strategically aligned solutions.
+
+You will collaborate closely with Data & Digital and PKS wet- (ADME and bioanalytical) and dry-lab (modeling) teams to identify opportunities where data, applications, and in silico methods can meaningfully improve decision quality, efficiency, and scientific impact. In addition to hands-on technical delivery, you will help shape and champion fit-for-purpose solutions that are robust, reusable, and maintainable in a production setting.
+
+This role is ideal for a scientifically grounded data scientist who combines strong analytical depth with practical software engineering expertise, and who is motivated by delivering measurable impact in drug discovery through high-quality data products, machine learning, and computational innovation.
+
+Key Responsibilities
+- Act as a key/senior Modeling & Simulation Data Science representative on discovery and lead optimization programs, contributing scientific and strategic input to project discussions and decisions.
+- Partner with Data & Digital and PKS wet- and dry-lab teams to identify priority gaps, clarify business needs, and translate them into strategically aligned analytical and computational solutions.
+- Design, build, and maintain scalable applications, workflows, and data pipelines that support scientific analysis and decision making across projects and modalities.
+- Develop, evaluate, and deploy machine learning and statistical models to uncover relationships between chemical structure and molecular or pharmacokinetic properties.
+- Apply data mining, visualization, and exploratory analysis to derive insight from complex experimental datasets and communicate findings clearly to diverse stakeholders.
+- Create and implement project- or modality-specific in silico models and data strategies/approaches that accelerate and streamline compound progression decisions.
+- Write production-quality code following strong software engineering practices, including version control, testing, documentation, and maintainability standards.
+- Lead/contribute to cross-functional initiatives across data science, software engineering, and laboratory teams, driving strategic alignment and organizational impact.
+- Promote and champion the broad adoption of in-house tools, applications, and data science methods, helping shape best practices and strengthen data science capabilities across Translational Medicine and PKS.
+- Stay current with advances in AI/ML, statistics, and computational methods relevant to ADME, PK/PD, and drug discovery, and proactively bring appropriate innovation into practice.
+
+Essential Requirements
+- Advanced degree in a relevant scientific or quantitative field such as cheminformatics, bioinformatics, biomedical engineering, computational biology, computational chemistry, AI/ML in life sciences, or a related discipline.
+- Senior Principal: PhD with 5+ years or MSc with 8+ years of relevant work experience applying data science in drug discovery, translational research, or related scientific environments, with a track record of leading complex initiatives and influencing scientific direction.
+- Senior Expert II: Relevant work experience applying data science in drug discovery, translational research, or related scientific environments, with a strong record of independent technical contribution and expert delivery in collaborative settings.
+- Strong expertise in machine learning, statistics, and reproducible data science workflows, with demonstrated ability to apply them to complex scientific problems.
+- Proficiency in Python and/or R, with solid software development practices including version control, testing, documentation, and production-quality coding standards.
+- Experience designing, developing, and deploying robust analytical applications, computational workflows, or machine learning systems in collaborative environments.
+- Demonstrated ability to work across multidisciplinary teams, influence stakeholders, and translate complex analytical concepts into clear, actionable insights.
+- Strong communication, collaboration, and leadership capabilities, with the ability to influence decisions in cross-functional settings.
+- Good/Excellent understanding of drug discovery processes, with particular relevance to ADME, pharmacokinetics, pharmacodynamics, or related translational data domains.
+
+Desirable Requirements
+- Experience with discovery-stage PK modeling, ADME data interpretation, or relating preclinical properties to in vivo pharmacokinetic behavior.
+- Familiarity with modern machine learning approaches such as deep learning, generative algorithms, or explainable AI in drug discovery contexts.
+- Experience with modern scientific software or web application development frameworks, including JavaScript-based front-end technologies (e.g., Svelte).
+- Knowledge of SQL, databases, Linux-based environments, and scalable data engineering patterns for scientific workflows.
+- Experience working with small molecules, peptides, RNAs, or other modalities in discovery-stage data analysis.
+
+This is a dual posting. The final level & title of the offer role would be determined by the hiring team.
+
+Division: Biomedical Research
+Business Unit: Research
+Location: Switzerland / Basel (City)
+Company / Legal Entity: [redacted]
+Functional Area: Data and Digital
+Job Type: Full time
+Employment Type: Regular
+
+Expected Annual Base Salary Range:
+Senior Expert: 102,200.00 - 189,800.00 CHF Annual
+Senior Principal: 129,500.00 - 240,500.00 CHF Annual
