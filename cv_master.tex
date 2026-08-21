@@ -49,6 +49,19 @@
 % with the text midline, so logos read as sitting "next to" the words).
 \newcommand{\vcenterlogo}[2]{\raisebox{-0.5\height+0.5ex}{\logoifexists{#1}{#2}}}
 
+% Phone icon, drawn in TikZ (vector; no file needed; ATS-safe as a graphic).
+% A simple smartphone glyph: rounded body outline with a speaker line and a
+% home dot, in the accent colour, sized and centred to sit on the text line.
+\newcommand{\phoneicon}{%
+  \raisebox{-0.15ex}{%
+  \begin{tikzpicture}[scale=1]
+    \draw[accent, line width=0.9pt, rounded corners=1.1pt]
+      (0,0) rectangle (1.7ex,2.9ex);
+    \draw[accent, line width=0.8pt] (0.55ex,2.55ex) -- (1.15ex,2.55ex); % speaker
+    \fill[accent] (0.85ex,0.42ex) circle (0.16ex);                       % home dot
+  \end{tikzpicture}}%
+}
+
 % Header link with logo + readable text.  \linklogo{url}{logo}{visible text}
 \newcommand{\linklogo}[3]{\href{#1}{\logoifexists{#2}{9pt}\,#3}}
 
@@ -142,6 +155,9 @@
 }
 
 \newcommand{\skillhead}[1]{\vspace{3pt}\noindent\textbf{\color{accent}#1}\par\vspace{1pt}}
+% Same as \skillhead but with extra space above, to separate skill groups
+% within a column (e.g. before Languages / Computing).
+\newcommand{\skillheadgap}[1]{\vspace{10pt}\noindent\textbf{\color{accent}#1}\par\vspace{1pt}}
 
 \setlist[itemize]{leftmargin=1.1em, itemsep=1pt, topsep=1pt, parsep=0pt}
 \pagestyle{empty}
@@ -157,7 +173,9 @@
   {\large\color{muted} Senior Data Scientist}\\[6pt]
   % Plain-text contact line (no icon fonts).
   Rixheimerstrasse 19, 4055 Basel, Switzerland\\[2pt]
-  +41 79 345 68 95 \\[5pt]
+  % Phone: TikZ icon (clickable tel: link) + number kept as text so ATS/Workday
+  % can still read and autofill it.
+  \href{tel:+41793456895}{\phoneicon}\ +41 79 345 68 95 \\[5pt]
   % Header links: clickable logos only, on one line separated by two spaces.
   \href{mailto:valentin.legras2@gmail.com}{\vcenterlogo{gmail}{11pt}}\ \ %
   \href{https://www.linkedin.com/in/valentin-legras/}{\vcenterlogo{linkedin}{11pt}}\ \ %
@@ -294,7 +312,7 @@
   \skill{Data visualization}{5}
   \skill{Descriptive statistics}{5}
   \skill{Biostatistics}{5}
-  \skillhead{Languages}
+  \skillheadgap{Languages}
   \skill{English (Fluent)}{5}
   \skill{French (Native)}{5}
   \skill{Spanish (B2)}{3}
@@ -305,7 +323,7 @@
   \skill{Python}{4}
   \skill{Spotfire / Tableau}{4}
   \skill{SAS}{4}
-  \skillhead{Computing}
+  \skillheadgap{Computing}
   \skill{MS Office (incl. VBA)}{5}
   \skill{Git \& Linux}{5}
   \skill{Database / SQL}{4}
