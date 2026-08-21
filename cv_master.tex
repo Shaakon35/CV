@@ -3,6 +3,10 @@
 %  Compile with:  tectonic cv_master.tex
 %  ATS-safe: plain ASCII text layer, no bullet/rating glyphs, no icon fonts.
 %
+%  HARD RULE: this CV must never exceed 2 PAGES. After any edit, verify with
+%  `pdfinfo cv_master.pdf | grep Pages` and tighten content/spacing until it
+%  fits. See .ona/skills/tailor-cv/SKILL.md step 6a for the trimming order.
+%
 %  LINKS: replace the \href{URL}{...} placeholders marked "REPLACE URL" with
 %  your real links. You do NOT need to copy them from the PDF - just paste the
 %  URLs to Ona in chat and they will be filled in.
@@ -57,9 +61,19 @@
 % Header photo. Drop your portrait at assets/photo.jpg (or .png). If absent,
 % the header simply uses the full width for text. A photo is fine for CVs in
 % CH/EU; it lives in an image, so it never affects the ATS text layer.
+% Rendered inside a rounded-corner clip for a modern look (TikZ, image only).
+% Resolve the photo path into \photofile (jpg preferred, then png).
+\newcommand{\photofile}{}
+\IfFileExists{assets/photo.jpg}{\renewcommand{\photofile}{assets/photo.jpg}}{%
+ \IfFileExists{assets/photo.png}{\renewcommand{\photofile}{assets/photo.png}}{}}
 \newcommand{\headerphoto}{%
-  \IfFileExists{assets/photo.jpg}{\includegraphics[width=2.6cm]{assets/photo.jpg}}{%
-  \IfFileExists{assets/photo.png}{\includegraphics[width=2.6cm]{assets/photo.png}}{}}%
+  \begin{tikzpicture}
+    % Rounded box; image fills by height and is centred, overflow clipped
+    % (crop-to-fill), so the portrait is never distorted.
+    \clip[rounded corners=6pt] (0,0) rectangle (2.7cm,3.3cm);
+    \node[inner sep=0] at (1.35cm,1.65cm)
+      {\includegraphics[height=3.3cm]{\photofile}};
+  \end{tikzpicture}%
 }
 % Boolean: true if a portrait photo file exists.
 \newif\ifphoto
