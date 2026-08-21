@@ -66,6 +66,20 @@ tectonic <year>/<company-role>/cv.tex
 If Tectonic is missing, install it (see repo README). Then render a preview
 image with `pdftoppm -png -r 130 cv.pdf preview` and show it inline.
 
+### 6a. Enforce the 2-page limit (mandatory)
+The CV must NEVER exceed 2 pages. After building, check the page count:
+```
+pdfinfo <year>/<company-role>/cv.pdf | grep Pages
+```
+If it reports more than 2 pages, tighten until it fits 2, in this order (least
+destructive first) and rebuild after each change:
+1. Trim the least-relevant bullets (older/less-relevant roles first).
+2. Tighten wording - shorter sentences, drop filler, merge overlapping bullets.
+3. Reduce inter-role spacing (the `\vspace` in `\rolel`/`\role`) by 1-2pt.
+4. Reduce `geometry` margin slightly (e.g. 1.2cm -> 1.1cm) as a last resort.
+Never shrink the body font below 10pt or margins below 1.0cm. Re-run the ATS
+checks (steps 5 and 7) after any edit. Do not deliver a CV over 2 pages.
+
 ### 7. Verify the text layer parses
 Confirm the PDF's extracted text is ASCII and readable (the parser sees this,
 not the layout):
@@ -81,6 +95,7 @@ appears. Tell the user any required keyword you could NOT cover honestly.
 - Tailored `cv.tex`, built `cv.pdf`, `job-offer.txt`, and `keywords.md` exist in
   `<year>/<company-role>/`.
 - `ats_sanitize.py --check` on both the `.tex` and the extracted PDF text exit 0.
+- The built PDF is at most 2 pages (`pdfinfo ... | grep Pages` reports 1 or 2).
 - No fabricated content; every required keyword either covered or flagged.
 - Inline PDF preview shown to the user.
 
@@ -98,6 +113,8 @@ Step 7 (pdftotext piped into `--check`) is what catches violations of these.
 It MUST exit 0.
 
 ## Hard rules
+- The CV must never be longer than 2 pages. Always verify with `pdfinfo` after
+  building and trim/tighten until it fits (see step 6a).
 - Never emit smart quotes, em/en dashes, arrows, checkmarks, bullets-as-glyphs,
   math comparison symbols, plus/minus, or accented bytes in the parsed text OR
   the rendered PDF text layer.
