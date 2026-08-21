@@ -1,0 +1,123 @@
+%==============================================================
+%  COVER LETTER - master template
+%  Change ONLY the two variables below per application:
+%    \Position  - the role title (appears twice in the body)
+%    \SignDate  - the signature date (DD/MM/YYYY)
+%  Everything else stays constant. Build:  tectonic cover_letter_master.tex
+%==============================================================
+\documentclass[11pt,a4paper]{article}
+
+% Tectonic uses the XeTeX engine. fontspec keeps the PDF text layer ATS-safe:
+%  - Ligatures=NoCommon disables fi/fl (they otherwise become single glyphs)
+%  - not enabling Ligatures=TeX keeps ' straight (U+0027) and -- as two hyphens
+% Requires the Latin Modern OpenType fonts (fonts-lmodern; installed in CI).
+\usepackage{fontspec}
+% Keeps the PDF text layer ATS-safe under XeTeX/Tectonic:
+%  - Mapping=          empties the TeX input mapping, so straight ' and "
+%                      stay as U+0027 / U+0022 (no curly quotes)
+%  - Ligatures=NoCommon disables fi/fl ligatures (single-glyph parser breakers)
+% Requires the Latin Modern OpenType fonts (fonts-lmodern; installed in CI).
+\setmainfont{Latin Modern Roman}[Mapping=, Ligatures=NoCommon]
+\usepackage[margin=2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+% ATS-safe list marker: a plain hyphen, not a bullet glyph.
+\renewcommand{\labelitemi}{-}
+
+\definecolor{accent}{HTML}{2C3E50}
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}
+\titlespacing{\section}{0pt}{10pt}{4pt}
+\setlist[itemize]{leftmargin=1.4em, itemsep=3pt, topsep=3pt}
+\pagestyle{empty}
+
+% ---- PER-APPLICATION VARIABLES (edit these two only) --------
+\newcommand{\Position}{PKS Data Scientist \& Scientific Software Engineer}
+\newcommand{\SignDate}{03/07/2026}
+% ------------------------------------------------------------
+
+\begin{document}
+
+{\Large\bfseries\color{accent} Valentin Legras}\\[10pt]
+
+\section{About myself}
+As a Senior Data Scientist and Product Owner with extensive experience in
+Clinical Data Science, I specialize in developing and automating reproducible
+workflows using R. Having successfully led the 'aNCA' open-source R package from
+conception to enterprise-wide adoption and mentored multiple colleagues, my goal
+is to secure the \Position{} position. I am eager to apply my technical expertise
+and proven leadership skills to guide teams in building innovative, efficient,
+and high-impact data solutions.
+
+\section{My mindset}
+Strategy and automation entered my life long before I knew the words for them. I
+was around 10 years old when I started competing in basketball. To perform well
+against top teams across Europe, individual skill was never enough. It required
+strategy: analyzing opponents, optimizing plays, and finding the most efficient
+way to win.
+
+Around the same time, I dived into strategic video games. I was driven to compete
+in environments where others could pay to get bonuses. To succeed, I had to find
+the most optimized path, meticulously planning and automating processes to
+maximize outcomes with limited resources. This wasn't just playing; it was a
+challenge to reverse-engineer systems, think out of the box, think about how
+other brains work and find the most efficient solution.
+
+This mindset, which revolves around strategy, optimization, and automation, is a
+core part of my identity. I have a strong drive to find the most efficient and
+strategic solution to any problem. In the future, I view AI as a transformative
+tool that amplifies this drive, enabling me to automate complex processes and
+uncover optimization opportunities at a scale that wasn't possible before (via
+multi-agent coding). I don't only build robust and optimized systems in my
+professional life but also for my personal interests. As an example, I developed
+back-testing reproducible statistical algorithms to optimize strategies on sports
+betting websites and investment on S\&P500 stocks (see GitHub).
+
+Having successfully led, coached, and mentored the 'aNCA' package team of 7
+developers and onboarded new clinical and pre-clinical colleagues, I've found my
+greatest impact comes from combining this strategic approach with team
+leadership. My vision is to apply this lifelong passion for optimization at a
+larger scale, leading teams to build the most efficient, automated, and impactful
+solutions possible.
+
+I would like to give you some rational why all my current skills makes me the
+ideal \Position{}. This combination of deep technical expertise, product
+ownership, and my identity built on optimization is precisely what the position
+requires. A successful Lead doesn't just manage tasks, they build a strategy, an
+automated environment, and a technical vision.
+
+\begin{itemize}
+  \item \textbf{Proven Team Leadership:} My work leading the 'aNCA' package proves
+        that I can successfully mentor a team (7 developers), set a clear vision,
+        and deliver a complex product from concept to enterprise-wide adoption.
+  \item \textbf{Strategic Mindset:} I use my optimization skills to build
+        efficient systems for the team. This means automating repetitive tasks
+        and using our resources wisely to deliver the best possible results.
+  \item \textbf{Technical \& Product Ownership:} As both a senior developer and a
+        Product Owner, I bridge the gap between technical implementation and
+        business value. I won't just lead a team, I will also lead the
+        development of robust, high-impact data products.
+  \item \textbf{Artificial intelligence:} AI is the ultimate tool to scale this
+        philosophy. My leadership approach would involve strategically "wrapping"
+        AI around workflows in order to automate complex analysis, optimize
+        processes, and amplify the team's capacity. My current focus is scaling
+        multi-agent coding workflows to automate complex development tasks,
+        boosting team velocity while ensuring high-level engineering standards
+        through AI-augmented issue creation, automated problem solving, and code
+        reviews.
+\end{itemize}
+
+I am ready to lead a larger team, applying this mindset to solve complex problems
+through practical strategy, and automation to solve the most challenging problems.
+
+\vspace{10pt}
+Sincerely\\[6pt]
+Valentin Legras\\
+\SignDate{}
+
+\end{document}

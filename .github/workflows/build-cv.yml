@@ -1,0 +1,56 @@
+name: Build CV
+
+# Auto-compile every .tex (master + tailored applications) to PDF on push,
+# and verify each PDF's text layer is ATS-safe (ASCII only).
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "**/*.tex"
+      - ".github/workflows/build-cv.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Tectonic
+        uses: WtfJoke/setup-tectonic@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install poppler (pdftotext) and Latin Modern fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils fonts-lmodern
+          fc-cache -f
+
+      - name: Build all CVs and verify ATS-safe text layer
+        run: |
+          set -e
+          fail=0
+          while IFS= read -r tex; do
+            echo "::group::$tex"
+            tectonic "$tex"
+            pdf="${tex%.tex}.pdf"
+            # The PDF text layer is what Workday/ATS parse; it must be ASCII.
+            if ! pdftotext "$pdf" - | \
+               python3 .ona/skills/tailor-cv/scripts/ats_sanitize.py --check -; then
+              echo "ATS check FAILED for $pdf"
+              fail=1
+            fi
+            echo "::endgroup::"
+          done < <(find . -name '*.tex' -not -path './.git/*')
+          exit $fail
+
+      - name: Upload PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdfs
+          path: "**/*.pdf"

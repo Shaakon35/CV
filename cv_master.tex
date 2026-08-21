@@ -1,0 +1,117 @@
+%==============================================================
+%  CV  -  single-file, self-contained LaTeX resume
+%  Compile with:  tectonic cv.tex   (or)   latexmk -pdf cv.tex
+%  Edit the sections below; the styling is defined once up top.
+%==============================================================
+\documentclass[11pt,a4paper]{article}
+
+% ----- packages ---------------------------------------------
+% Keeps the PDF text layer ATS-safe under XeTeX/Tectonic:
+%  - Mapping=          straight ' and " stay as U+0027 / U+0022 (no curly quotes)
+%  - Ligatures=NoCommon disables fi/fl ligatures (single-glyph parser breakers)
+% Requires the Latin Modern OpenType fonts (fonts-lmodern; installed in CI).
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}[Mapping=, Ligatures=NoCommon]
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{tabularx}
+
+% ATS-safe list marker: a plain hyphen, not a bullet glyph.
+% (A U+2022 bullet in the PDF text layer breaks Workday autofill.)
+\renewcommand{\labelitemi}{-}
+
+% ----- colours ----------------------------------------------
+\definecolor{accent}{HTML}{2C3E50}
+\definecolor{muted}{HTML}{7F8C8D}
+
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+% ----- section styling --------------------------------------
+\titleformat{\section}
+  {\Large\bfseries\color{accent}}
+  {}{0em}{}[\color{accent}\titlerule]
+\titlespacing{\section}{0pt}{12pt}{6pt}
+
+% ----- helpers ----------------------------------------------
+% \cventry{title}{org}{date}{location}{description}
+\newcommand{\cventry}[5]{%
+  \noindent\begin{tabularx}{\linewidth}{@{}Xr@{}}
+    \textbf{#1}, #2 & \textcolor{muted}{#3} \\
+    \textit{#4} & \\
+  \end{tabularx}%
+  \vspace{2pt}
+  #5
+  \vspace{6pt}
+}
+
+\setlist[itemize]{leftmargin=1.2em, itemsep=1pt, topsep=2pt}
+\pagestyle{empty}
+
+%==============================================================
+\begin{document}
+
+% ----- header -----------------------------------------------
+\begin{center}
+  {\Huge\bfseries\color{accent} Jane Doe}\\[4pt]
+  {\large\color{muted} Senior Software Engineer}\\[6pt]
+  % Plain-text contact line. No icon fonts: FontAwesome glyphs render as
+  % garbage codepoints in the PDF text layer and break resume autofill.
+  \href{mailto:jane.doe@example.com}{jane.doe@example.com} \quad
+  +1 555 123 4567 \quad
+  Berlin, Germany\\[2pt]
+  \href{https://github.com/janedoe}{github.com/janedoe} \quad
+  \href{https://linkedin.com/in/janedoe}{linkedin.com/in/janedoe}
+\end{center}
+
+% ----- summary ----------------------------------------------
+\section{Summary}
+Software engineer with 8+ years building distributed systems and developer
+tooling. Focused on reliability, clean APIs, and mentoring. Comfortable across
+the stack, from Rust services to TypeScript front ends.
+
+% ----- experience -------------------------------------------
+\section{Experience}
+
+\cventry{Senior Software Engineer}{Acme Cloud}{2021 to Present}{Berlin, Germany}{%
+  \begin{itemize}
+    \item Led migration of the billing platform to event-sourcing, cutting
+          reconciliation errors by 90\%.
+    \item Designed a multi-tenant rate limiter handling 40k req/s.
+    \item Mentored 4 engineers; introduced RFC-based design reviews.
+  \end{itemize}
+}
+
+\cventry{Software Engineer}{Globex}{2017 to 2021}{Munich, Germany}{%
+  \begin{itemize}
+    \item Built the internal CI pipeline used by 200+ developers.
+    \item Reduced median build time from 22 min to 6 min.
+  \end{itemize}
+}
+
+% ----- education --------------------------------------------
+\section{Education}
+
+\cventry{M.Sc. Computer Science}{TU Munich}{2015 to 2017}{Munich, Germany}{}
+\cventry{B.Sc. Computer Science}{University of Vienna}{2012 to 2015}{Vienna, Austria}{}
+
+% ----- skills -----------------------------------------------
+\section{Skills}
+\noindent
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+  \textbf{Languages}  & Rust, TypeScript, Go, Python, SQL \\
+  \textbf{Infra}      & Kubernetes, Terraform, AWS, PostgreSQL, Kafka \\
+  \textbf{Practices}  & Distributed systems, CI/CD, observability, TDD \\
+\end{tabularx}
+
+% ----- projects (optional) ----------------------------------
+\section{Projects}
+\begin{itemize}
+  \item \textbf{openmetrics-rs} - Rust library for Prometheus exposition,
+        1.2k GitHub stars.
+  \item \textbf{cv-latex} - this very CV, auto-built with GitHub Actions.
+\end{itemize}
+
+\end{document}
