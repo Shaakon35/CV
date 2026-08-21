@@ -1,0 +1,104 @@
+%==============================================================
+%  COVER LETTER - PKS Data Scientist & Scientific Software Engineer
+%  Tailored from cover_letter_master.tex. Target company is NOT named
+%  anywhere (per tailor-cv skill rule). Build: tectonic cover_letter.tex
+%==============================================================
+\documentclass[11pt,a4paper]{article}
+
+% Tectonic uses the XeTeX engine. fontspec keeps the PDF text layer ATS-safe:
+%  - Ligatures=NoCommon disables fi/fl (they otherwise become single glyphs)
+%  - Mapping= keeps ' straight (U+0027) and -- as two hyphens
+% Requires the Latin Modern OpenType fonts (fonts-lmodern; installed in CI).
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}[Mapping=, Ligatures=NoCommon]
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+% ATS-safe list marker: a plain hyphen, not a bullet glyph.
+\renewcommand{\labelitemi}{-}
+
+\definecolor{accent}{HTML}{2C3E50}
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}
+\titlespacing{\section}{0pt}{7pt}{3pt}
+\setlist[itemize]{leftmargin=1.4em, itemsep=2pt, topsep=2pt}
+\pagestyle{empty}
+
+% ---- PER-APPLICATION VARIABLES -----------------------------
+\newcommand{\Position}{PKS Data Scientist \& Scientific Software Engineer}
+\newcommand{\SignDate}{03/07/2026}
+% ------------------------------------------------------------
+
+\begin{document}
+
+{\Large\bfseries\color{accent} Valentin Legras}\\[8pt]
+
+Dear Hiring Team,
+
+\section{About myself}
+I am a Principal Data Scientist and scientific software engineer with 7+ years
+turning large-scale PK/PD and experimental datasets into decision-enabling tools
+across clinical and preclinical drug development. I combine hands-on machine
+learning and statistics with production-grade software engineering in R and
+Python, and I founded and led aNCA, an open-source R package now used by 120+
+scientists. I am applying for the \Position{} position in your Modeling \&
+Simulation Data Science team, to keep building scalable, reusable analytical
+solutions that accelerate scientific decision making.
+
+\section{Why I fit the role}
+This role asks for a scientifically grounded data scientist who pairs analytical
+depth with real software engineering, and who delivers measurable impact through
+high-quality data products. That is exactly the profile I have built:
+
+\begin{itemize}
+  \item \textbf{Production software engineering:} I established and enforced
+        production standards for the aNCA package - version control, testing,
+        documentation, code review, and CI/CD - taking it from concept to
+        enterprise-wide adoption. Building robust, reusable, maintainable tools
+        in a production setting is the core of what I do.
+  \item \textbf{Machine learning and statistics:} I develop and evaluate ML
+        models (Logistic Regression, Gradient Boosting, Random Forest) and apply
+        explainable-AI techniques (feature importance, SHAP) to surface the
+        drivers behind predictions, alongside a strong biostatistics foundation.
+  \item \textbf{Scalable pipelines and applications:} I designed reproducible
+        data pipelines and interactive R/Shiny and Spotfire applications that
+        turn complex experimental data into insight, cutting manual effort by up
+        to 90 percent and delivering more than 2M CHF in annual savings.
+  \item \textbf{PK and preclinical data:} I bring a solid understanding of PK/PD
+        and clearance concepts, and I extended the aNCA workflow to ingest and
+        harmonize preclinical in vivo and in vitro PK data with protocol
+        metadata - broadening it to pre-clinical, DMPK-adjacent use cases.
+  \item \textbf{AI and automation:} I scale multi-agent coding workflows and
+        LLM-based generative-AI tooling to automate complex analysis and
+        development, boosting velocity while upholding engineering standards.
+\end{itemize}
+
+\section{My mindset}
+Strategy and automation entered my life long before I knew the words for them.
+Competing in basketball across Europe from age 10 taught me that individual skill
+is never enough: it takes analyzing opponents, optimizing plays, and finding the
+most efficient way to win. Strategic video games sharpened the same instinct -
+reverse-engineering systems and automating processes to maximize outcomes with
+limited resources. That drive toward strategy, optimization, and automation is a
+core part of my identity; I still apply it outside work, building back-testing
+reproducible algorithms for S\&P500 investment strategies (see GitHub), and I see
+AI as the tool that amplifies it at a scale that was not possible before.
+
+Having led and mentored the aNCA team of 7 developers, I know my greatest impact
+comes from combining this optimization-first approach with the ability to align
+stakeholders and communicate clearly across multidisciplinary teams.
+
+I would welcome the chance to discuss how my mix of data science, software
+engineering, and pharmacokinetic experience can contribute to your team.
+
+\vspace{6pt}
+Sincerely\\[6pt]
+Valentin Legras\\
+\SignDate{}
+
+\end{document}
