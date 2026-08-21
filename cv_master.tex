@@ -35,18 +35,23 @@
 \graphicspath{{assets/logos/}}
 
 % \haslogo{name} is true only if assets/logos/<name>.png (or .pdf) exists.
+% No raisebox here: the caller controls vertical alignment so it can be tuned
+% per context (header vs. role line) without double-shifting.
 \newcommand{\logoifexists}[2]{% #1 = file basename, #2 = height
-  \IfFileExists{assets/logos/#1.png}{\raisebox{-0.2\height}{\includegraphics[height=#2]{#1.png}}}{%
-  \IfFileExists{assets/logos/#1.pdf}{\raisebox{-0.2\height}{\includegraphics[height=#2]{#1.pdf}}}{}}%
+  \IfFileExists{assets/logos/#1.png}{\includegraphics[height=#2]{#1.png}}{%
+  \IfFileExists{assets/logos/#1.pdf}{\includegraphics[height=#2]{#1.pdf}}{}}%
 }
+% Vertically centre a logo on the current text line (aligns the logo's midline
+% with the text midline, so logos read as sitting "next to" the words).
+\newcommand{\vcenterlogo}[2]{\raisebox{-0.5\height+0.5ex}{\logoifexists{#1}{#2}}}
 
 % Header link with logo + readable text.  \linklogo{url}{logo}{visible text}
 \newcommand{\linklogo}[3]{\href{#1}{\logoifexists{#2}{9pt}\,#3}}
 
 % Company logo shown next to a role title. \rolelogo{logo}{height}
-% Heights are chosen so every logo has the SAME visual area regardless of its
-% aspect ratio (area = aspect * height^2; target area ~170 pt^2).
-%   roche 9.6  anca 14.0  novartis 9.3  sanofi 12.8  cofidis 8.7
+% Symbol logos are sized for equal visual area (area = aspect * height^2,
+% target ~170 pt^2): roche 9.6  anca 14.0  sanofi 12.8  cofidis 8.7.
+% novartis is a wordmark, so it is sized to text cap-height (7.5pt) instead.
 \newcommand{\rolelogo}[2]{\logoifexists{#1}{#2}}
 
 % Header photo. Drop your portrait at assets/photo.jpg (or .png). If absent,
@@ -98,7 +103,7 @@
 \newcommand{\rolel}[5]{%
   \vspace{9pt}
   \noindent\begin{tabularx}{\linewidth}{@{}Xr@{}}
-    \textbf{#1}~\raisebox{-0.3\height}{\rolelogo{#4}{#5}} & \textcolor{muted}{#3} \\
+    \textbf{#1}~\vcenterlogo{#4}{#5} & \textcolor{muted}{#3} \\
     \textit{#2} & \\
   \end{tabularx}%
 }
@@ -140,9 +145,9 @@
   Rixheimerstrasse 19, 4055 Basel, Switzerland\\[2pt]
   +41 79 345 68 95 \\[5pt]
   % Header links: clickable logos only, on one line separated by two spaces.
-  \href{mailto:valentin.legras2@gmail.com}{\logoifexists{gmail}{11pt}}\ \ %
-  \href{https://www.linkedin.com/in/valentin-legras/}{\logoifexists{linkedin}{11pt}}\ \ %
-  \href{https://github.com/Shaakon35}{\logoifexists{github}{11pt}}%
+  \href{mailto:valentin.legras2@gmail.com}{\vcenterlogo{gmail}{11pt}}\ \ %
+  \href{https://www.linkedin.com/in/valentin-legras/}{\vcenterlogo{linkedin}{11pt}}\ \ %
+  \href{https://github.com/Shaakon35}{\vcenterlogo{github}{11pt}}%
 }
 
 \ifphoto
@@ -229,7 +234,7 @@
         and completed contracts.
 \end{itemize}
 
-\rolel{Biostatistical Application Developer}{Novartis AG, Basel, Switzerland}{May to Aug 2019}{novartis}{9.3pt}
+\rolel{Biostatistical Application Developer}{Novartis AG, Basel, Switzerland}{May to Aug 2019}{novartis}{7.5pt}
 \begin{itemize}
   \item Developed an R Shiny application to visualize clinical data (tables,
         figures and listings) dynamically and interactively during DMC (Data
