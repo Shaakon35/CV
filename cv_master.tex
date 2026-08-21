@@ -50,22 +50,10 @@
 % with the text midline, so logos read as sitting "next to" the words).
 \newcommand{\vcenterlogo}[2]{\raisebox{-0.5\height+0.5ex}{\logoifexists{#1}{#2}}}
 
-% Phone icon, drawn in TikZ (vector; no file needed; ATS-safe as a graphic).
-% Classic telephone handset (old-style receiver), drawn in TikZ (vector; no
-% file needed; ATS-safe as a graphic). Built from a curved handle bar plus two
-% angled bells at the ends, rotated to the familiar diagonal, in the accent
-% colour and centred on the text line.
-\newcommand{\phoneicon}{%
-  \raisebox{-0.15ex}{%
-  \begin{tikzpicture}[scale=0.10, rotate=-35, line cap=round]
-    % handle bar (curved grip)
-    \draw[accent, line width=1.7pt] (0.9,0) .. controls (1.6,1.5) and (3.4,1.5) .. (4.1,0);
-    % earpiece bell (left)
-    \fill[accent] (0.5,0.15) ellipse (0.75 and 0.45);
-    % mouthpiece bell (right)
-    \fill[accent] (4.5,0.15) ellipse (0.75 and 0.45);
-  \end{tikzpicture}}%
-}
+% Phone icon: classic filled telephone receiver (Font Awesome style) as an
+% image logo in assets/logos/phone.png. ATS-safe (adds nothing to the text
+% layer). Vertically centred on the text line via \vcenterlogo.
+\newcommand{\phoneicon}{\vcenterlogo{phone}{9pt}}
 
 % Header link with logo + readable text.  \linklogo{url}{logo}{visible text}
 \newcommand{\linklogo}[3]{\href{#1}{\logoifexists{#2}{9pt}\,#3}}
