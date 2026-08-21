@@ -120,8 +120,9 @@
   \end{tabularx}%
 }
 % Employment-type tag next to a role title (e.g. Internship, Apprenticeship).
-% Rendered 3pt smaller than the body and in the muted grey, no parentheses.
-\newcommand{\emptype}[1]{{\textcolor{muted}{\fontsize{7}{8}\selectfont #1}}}
+% Rendered 3pt smaller than the body, italic (not bold), in the muted grey,
+% no parentheses. \normalfont clears the surrounding \textbf so it is not bold.
+\newcommand{\emptype}[1]{{\normalfont\textcolor{muted}{\fontsize{7}{8}\selectfont \textit{#1}}}}
 % \rolel{title}{org}{dates}{logo}{logo height}
 \newcommand{\rolel}[5]{%
   \vspace{7pt}
