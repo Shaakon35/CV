@@ -51,15 +51,19 @@
 \newcommand{\vcenterlogo}[2]{\raisebox{-0.5\height+0.5ex}{\logoifexists{#1}{#2}}}
 
 % Phone icon, drawn in TikZ (vector; no file needed; ATS-safe as a graphic).
-% A simple smartphone glyph: rounded body outline with a speaker line and a
-% home dot, in the accent colour, sized and centred to sit on the text line.
+% Classic telephone handset (old-style receiver), drawn in TikZ (vector; no
+% file needed; ATS-safe as a graphic). Built from a curved handle bar plus two
+% angled bells at the ends, rotated to the familiar diagonal, in the accent
+% colour and centred on the text line.
 \newcommand{\phoneicon}{%
   \raisebox{-0.15ex}{%
-  \begin{tikzpicture}[scale=1]
-    \draw[accent, line width=0.9pt, rounded corners=1.1pt]
-      (0,0) rectangle (1.7ex,2.9ex);
-    \draw[accent, line width=0.8pt] (0.55ex,2.55ex) -- (1.15ex,2.55ex); % speaker
-    \fill[accent] (0.85ex,0.42ex) circle (0.16ex);                       % home dot
+  \begin{tikzpicture}[scale=0.10, rotate=-35, line cap=round]
+    % handle bar (curved grip)
+    \draw[accent, line width=1.7pt] (0.9,0) .. controls (1.6,1.5) and (3.4,1.5) .. (4.1,0);
+    % earpiece bell (left)
+    \fill[accent] (0.5,0.15) ellipse (0.75 and 0.45);
+    % mouthpiece bell (right)
+    \fill[accent] (4.5,0.15) ellipse (0.75 and 0.45);
   \end{tikzpicture}}%
 }
 
@@ -309,14 +313,6 @@ molecules from Phase 1 to market.
         statistical environment, enabling biostatisticians to run their analyses.
 \end{itemize}
 
-% ----- education --------------------------------------------
-\section{Educational Background}
-
-\role{Master's Degree, Software Engineering and Statistics}{Polytech Lille, Villeneuve-d'Ascq, France}{2017 to 2020}
-\vspace{3pt}
-
-\role{Technical Degree, Statistics and Business Intelligence}{Institut Universitaire de Technologie, Vannes, France}{2015 to 2017}
-
 % ----- skills -----------------------------------------------
 \section{Skills}
 
@@ -324,7 +320,9 @@ molecules from Phase 1 to market.
   \skilllist{Pharmacometrics \& Clinical Data}{R, NONMEM, Phoenix/WinNonlin,
     PK/PD modeling, NCA, CDISC (SDTM/ADaM), biostatistics, GxP}
   \skilllist{Data Science \& Engineering}{Python, machine learning, SQL,
-    Git, CI/CD, Agile/Scrum, LLMs / AI-assisted tooling}
+    Git, CI/CD, Agile/Scrum}
+  \skilllist{AI \& Automation}{LLMs, multi-agent coding, AI-assisted
+    development, prompt engineering, workflow automation}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.48\linewidth}
   \skilllist{Visualization \& Reporting}{R Shiny, ggplot, R Markdown, SAS,
@@ -334,6 +332,14 @@ molecules from Phase 1 to market.
   \skill{French (Native)}{5}
   \skill{Spanish (B2)}{3}
 \end{minipage}
+
+% ----- education --------------------------------------------
+\section{Educational Background}
+
+\role{Master's Degree, Software Engineering and Statistics}{Polytech Lille, Villeneuve-d'Ascq, France}{2017 to 2020}
+\vspace{3pt}
+
+\role{Technical Degree, Statistics and Business Intelligence}{Institut Universitaire de Technologie, Vannes, France}{2015 to 2017}
 
 % ----- publications -----------------------------------------
 % \sloppy: underlined links (ulem) disable hyphenation, so allow looser
@@ -376,14 +382,9 @@ molecules from Phase 1 to market.
 \end{itemize}
 \par}% end \sloppy group
 
-% ----- personal projects ------------------------------------
-\section{Personal Projects}
-\noindent Back-testing reproducible statistical algorithms to optimize
-sports-betting and S\&P 500 investment strategies
-(\link{https://github.com/Shaakon35}{GitHub}).
-
 % ----- hobbies ----------------------------------------------
 \section{Hobbies}
-Roller skating, Ice skating, Surfing, Basketball, Cycling, Drawing.
+Roller skating, Ice skating, Surfing, Basketball, Cycling, Drawing,
+Coding (\link{https://github.com/Shaakon35/Stock_portfolio}{stock market analysis}).
 
 \end{document}
