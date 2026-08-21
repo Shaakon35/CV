@@ -1,9 +1,13 @@
 %==============================================================
-%  CV  -  single-file, self-contained LaTeX resume
-%  Compile with:  tectonic cv.tex   (or)   latexmk -pdf cv.tex
-%  Edit the sections below; the styling is defined once up top.
+%  CV - Valentin Legras - master CV
+%  Compile with:  tectonic cv_master.tex
+%  ATS-safe: plain ASCII text layer, no bullet/rating glyphs, no icon fonts.
+%
+%  LINKS: replace the \href{URL}{...} placeholders marked "REPLACE URL" with
+%  your real links. You do NOT need to copy them from the PDF - just paste the
+%  URLs to Ona in chat and they will be filled in.
 %==============================================================
-\documentclass[11pt,a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 
 % ----- packages ---------------------------------------------
 % Keeps the PDF text layer ATS-safe under XeTeX/Tectonic:
@@ -12,42 +16,90 @@
 % Requires the Latin Modern OpenType fonts (fonts-lmodern; installed in CI).
 \usepackage{fontspec}
 \setmainfont{Latin Modern Roman}[Mapping=, Ligatures=NoCommon]
-\usepackage[margin=1.6cm]{geometry}
+\usepackage[margin=1.4cm]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+
+% ---- logo support ------------------------------------------
+% Logos are IMAGES, which are ATS-safe: an embedded picture contributes nothing
+% to the PDF text layer (unlike icon fonts). Put PNG/PDF files in
+% assets/logos/ named exactly as referenced below. If a file is missing, the
+% macros below fall back to plain text so the CV always builds.
+\graphicspath{{assets/logos/}}
+
+% \haslogo{name} is true only if assets/logos/<name>.png (or .pdf) exists.
+\newcommand{\logoifexists}[2]{% #1 = file basename, #2 = height
+  \IfFileExists{assets/logos/#1.png}{\raisebox{-0.2\height}{\includegraphics[height=#2]{#1.png}}}{%
+  \IfFileExists{assets/logos/#1.pdf}{\raisebox{-0.2\height}{\includegraphics[height=#2]{#1.pdf}}}{}}%
+}
+
+% Header link with logo + readable text.  \linklogo{url}{logo}{visible text}
+\newcommand{\linklogo}[3]{\href{#1}{\logoifexists{#2}{9pt}\,#3}}
+
+% Company logo shown next to a role title. \rolelogo{logo}
+\newcommand{\rolelogo}[1]{\logoifexists{#1}{12pt}}
 
 % ATS-safe list marker: a plain hyphen, not a bullet glyph.
-% (A U+2022 bullet in the PDF text layer breaks Workday autofill.)
 \renewcommand{\labelitemi}{-}
 
 % ----- colours ----------------------------------------------
 \definecolor{accent}{HTML}{2C3E50}
 \definecolor{muted}{HTML}{7F8C8D}
+\definecolor{barfill}{HTML}{2C3E50}
+\definecolor{barempty}{HTML}{D5DBDB}
 
 \hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
 
 % ----- section styling --------------------------------------
 \titleformat{\section}
-  {\Large\bfseries\color{accent}}
+  {\large\bfseries\color{accent}}
   {}{0em}{}[\color{accent}\titlerule]
-\titlespacing{\section}{0pt}{12pt}{6pt}
+\titlespacing{\section}{0pt}{8pt}{4pt}
 
 % ----- helpers ----------------------------------------------
-% \cventry{title}{org}{date}{location}{description}
-\newcommand{\cventry}[5]{%
+% \role{title}{org, location}{dates}          - no logo
+% \rolel{title}{org, location}{dates}{logo}   - with a logo next to the title
+\newcommand{\role}[3]{%
+  \vspace{3pt}
   \noindent\begin{tabularx}{\linewidth}{@{}Xr@{}}
-    \textbf{#1}, #2 & \textcolor{muted}{#3} \\
-    \textit{#4} & \\
+    \textbf{#1} & \textcolor{muted}{#3} \\
+    \textit{#2} & \\
   \end{tabularx}%
-  \vspace{2pt}
-  #5
-  \vspace{6pt}
+  \vspace{1pt}
+}
+\newcommand{\rolel}[4]{%
+  \vspace{3pt}
+  \noindent\begin{tabularx}{\linewidth}{@{}Xr@{}}
+    \textbf{#1}~\rolelogo{#4} & \textcolor{muted}{#3} \\
+    \textit{#2} & \\
+  \end{tabularx}%
+  \vspace{1pt}
 }
 
-\setlist[itemize]{leftmargin=1.2em, itemsep=1pt, topsep=2pt}
+% \skill{name}{level 1-5} - drawn bar, leaves no characters in the text layer
+\newcommand{\seg}[1]{\textcolor{#1}{\rule{9pt}{7pt}}}
+\newcommand{\barfive}[1]{%
+  \ifnum#1>0\seg{barfill}\else\seg{barempty}\fi\,%
+  \ifnum#1>1\seg{barfill}\else\seg{barempty}\fi\,%
+  \ifnum#1>2\seg{barfill}\else\seg{barempty}\fi\,%
+  \ifnum#1>3\seg{barfill}\else\seg{barempty}\fi\,%
+  \ifnum#1>4\seg{barfill}\else\seg{barempty}\fi%
+}
+\newcommand{\skill}[2]{%
+  \noindent\begin{tabularx}{\linewidth}{@{}X r@{}}
+    #1 & \barfive{#2} \\
+  \end{tabularx}%
+  \vspace{1pt}
+}
+
+\newcommand{\skillhead}[1]{\vspace{3pt}\noindent\textbf{\color{accent}#1}\par\vspace{1pt}}
+
+\setlist[itemize]{leftmargin=1.1em, itemsep=1pt, topsep=1pt, parsep=0pt}
 \pagestyle{empty}
 
 %==============================================================
@@ -55,63 +107,193 @@
 
 % ----- header -----------------------------------------------
 \begin{center}
-  {\Huge\bfseries\color{accent} Jane Doe}\\[4pt]
-  {\large\color{muted} Senior Software Engineer}\\[6pt]
-  % Plain-text contact line. No icon fonts: FontAwesome glyphs render as
-  % garbage codepoints in the PDF text layer and break resume autofill.
-  \href{mailto:jane.doe@example.com}{jane.doe@example.com} \quad
-  +1 555 123 4567 \quad
-  Berlin, Germany\\[2pt]
-  \href{https://github.com/janedoe}{github.com/janedoe} \quad
-  \href{https://linkedin.com/in/janedoe}{linkedin.com/in/janedoe}
+  {\Huge\bfseries\color{accent} Valentin Legras}\\[4pt]
+  {\large\color{muted} Senior Data Scientist and Product Owner}\\[5pt]
+  % Plain-text contact line (no icon fonts).
+  Riehenstrasse 125, 4058 Basel, Switzerland \quad
+  +41 79 345 68 95 \\[3pt]
+  % Header links: each shows a small logo (if provided in assets/logos/) that is
+  % clickable, plus readable ASCII text so Workday autofill still works.
+  \linklogo{https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=valentin.legras2@gmail.com}{gmail}{valentin.legras2@gmail.com}\quad
+  \linklogo{https://www.linkedin.com/in/valentin-legras/}{linkedin}{linkedin.com/in/valentin-legras}\quad
+  \linklogo{https://github.com/Shaakon35}{github}{github.com/Shaakon35}
 \end{center}
 
-% ----- summary ----------------------------------------------
-\section{Summary}
-Software engineer with 8+ years building distributed systems and developer
-tooling. Focused on reliability, clean APIs, and mentoring. Comfortable across
-the stack, from Rust services to TypeScript front ends.
+% ----- work experience --------------------------------------
+\section{Work Experience}
 
-% ----- experience -------------------------------------------
-\section{Experience}
+\rolel{Senior Data Scientist}{F. Hoffmann-La Roche, Basel, Switzerland}{2020 to now}{roche}
+\begin{itemize}
+  \item Engineered end-to-end PK/PD analysis workflows, from data acquisition
+        and preparation to modeling and reporting, across multiple therapeutic
+        areas (e.g., Oncology, Neuroscience) for Phase 1 to 3 clinical trials.
+  \item Developed interactive data visualization and exploration tools using
+        R/Shiny and Spotfire, enabling real-time data review and supporting
+        cross-functional team decisions, leading to deeper and faster insights
+        from complex clinical data.
+  \item Led the creation of analysis-ready NCA, PK/PD, and ADaM-compliant
+        datasets from raw clinical data for population modeling in R, Phoenix
+        and NONMEM.
+  \item Authored responses to health authority queries (FDA, EMA) and managed
+        the QC and preparation of datasets and reports for electronic regulatory
+        submissions, contributing to the successful progression of molecules
+        from Phase 1 to market, such as COLUMVI(R) (glofitamab) drug.
+  \item Led a process improvement initiative: automation of ADPC, ADNCA, and
+        ADPP datasets by converting legacy SAS programs into reproducible R
+        pipelines, leveraging AI-assisted tools to accelerate development and
+        reduce manual effort by 90\%. This new process is now used by 30 data
+        scientists, saving them 50\% of their time on these tasks.
+  \item Collaborated with clinical, statistical, and pharmacometric teams to
+        ensure data integrity and deliver custom analysis tools, streamlining
+        modeling and simulation activities.
+\end{itemize}
 
-\cventry{Senior Software Engineer}{Acme Cloud}{2021 to Present}{Berlin, Germany}{%
-  \begin{itemize}
-    \item Led migration of the billing platform to event-sourcing, cutting
-          reconciliation errors by 90\%.
-    \item Designed a multi-tenant rate limiter handling 40k req/s.
-    \item Mentored 4 engineers; introduced RFC-based design reviews.
-  \end{itemize}
-}
+\rolel{\href{https://github.com/pharmaverse/aNCA}{aNCA} Product Owner}{F. Hoffmann-La Roche, Basel, Switzerland}{2023 to now}{anca}
+\begin{itemize}
+  \item Directed the end-to-end product lifecycle of the 'aNCA' open-source R
+        package using an Agile/Scrum framework, driving it from concept to
+        enterprise-wide adoption by 120+ clinical and pre-clinical scientists at
+        Roche.
+  \item Led, coached, and mentored a core team of 7 developers and managed a
+        15+ stakeholder network to define a product roadmap now supporting
+        2,000+ studies annually.
+  \item Delivered more than 1.5M CHF in annual savings by transforming a manual,
+        weeks-long workflow into a 90\% automated process. This impact combines
+        5 FTEs (more than 1M CHF) and more than 500k CHF in retired commercial
+        software licenses.
+  \item Established and enforced GxP-compliant R package development standards,
+        including rigorous code review and mentorship, to ensure
+        regulatory-grade quality.
+  \item Contributed to the \href{https://pharmaverse.org/}{pharmaverse} ecosystem by developing standardized
+        modules for automated NCA, PK Table, Listing, and Graph (TLG)
+        generation, using Git, CI/CD, Coding Agents (LLMs) and an AI
+        interpretation bot (Python).
+\end{itemize}
 
-\cventry{Software Engineer}{Globex}{2017 to 2021}{Munich, Germany}{%
-  \begin{itemize}
-    \item Built the internal CI pipeline used by 200+ developers.
-    \item Reduced median build time from 22 min to 6 min.
-  \end{itemize}
-}
+\rolel{IT/Data Science Developer}{F. Hoffmann-La Roche, Basel, Switzerland}{March to August 2020}{roche}
+\begin{itemize}
+  \item Translated pharma scientists' requirements into IT/Data science tasks.
+  \item Deployed several tools with R Shiny (data visualization) to support
+        process modelers and formulators (incl. tidyverse packages).
+  \item Used Git, Jenkins and GCP to build, test and deploy applications.
+  \item Automated database updates on Google Spreadsheet with R (incl. VBA
+        coding), data management and data merging.
+  \item Automated PowerPoint reports with R (officer package) for daily reports.
+\end{itemize}
+
+\rolel{Data Scientist}{COFIDIS, Lille, France}{Oct 2019 to Feb 2020}{cofidis}
+\begin{itemize}
+  \item Data cleaning, data analysis, and data science on customer loan data
+        with R.
+  \item Predicted contract return with machine learning methods such as Logistic
+        Regression, Gradient Boosting, and Random Forest.
+  \item Recommended data collection strategies to optimize the rate of returned
+        and completed contracts.
+\end{itemize}
+
+\rolel{Biostatistical Application Developer}{Novartis AG, Basel, Switzerland}{May to Aug 2019}{novartis}
+\begin{itemize}
+  \item Developed an R Shiny application to visualize clinical data (tables,
+        figures and listings) dynamically and interactively during DMC (Data
+        Monitoring Committee) reviews.
+  \item Created dynamic and interactive HTML reports with R Markdown (dplyr,
+        plyr, ggplot, plotly, DT packages).
+  \item Generalized the application to apply across different studies.
+  \item Worked with clinical data, especially ADaM and SDTM datasets (CDISC
+        formats).
+\end{itemize}
+
+\rolel{SAS Developer}{Sanofi R\&D, Paris, France}{June to Aug 2018}{sanofi}
+\begin{itemize}
+  \item Created a tool to automate data mapping (precise structure) and generated
+        XML files for an artificial intelligence project.
+  \item Developed, validated and referenced SAS programs for dataset creation and
+        reporting: tables, listings and figures.
+  \item Applied SAS/BASE, SAS/MACRO, and SAS/SQL programming.
+  \item Used SDTM/ADaM formats and specifications (metadata files).
+\end{itemize}
+
+\rolel{SAS and IT Developer}{Sanofi R\&D, Paris, France}{April to Aug 2017}{sanofi}
+\begin{itemize}
+  \item Adapted SAS programs to a new statistical environment.
+  \item Worked on applications to optimize, improve and develop SAS programs on
+        clinical trials data, enabling biostatisticians to perform their tasks.
+\end{itemize}
 
 % ----- education --------------------------------------------
-\section{Education}
+\section{Educational Background}
 
-\cventry{M.Sc. Computer Science}{TU Munich}{2015 to 2017}{Munich, Germany}{}
-\cventry{B.Sc. Computer Science}{University of Vienna}{2012 to 2015}{Vienna, Austria}{}
+\role{Master's Degree, Software Engineering and Statistics}{Polytech Lille, Villeneuve-d'Ascq, France}{2017 to 2020}
+\vspace{3pt}
+
+\role{Technical Degree, Statistics and Business Intelligence}{Institut Universitaire de Technologie, Vannes, France}{2015 to 2017}
 
 % ----- skills -----------------------------------------------
 \section{Skills}
-\noindent
-\begin{tabularx}{\linewidth}{@{}lX@{}}
-  \textbf{Languages}  & Rust, TypeScript, Go, Python, SQL \\
-  \textbf{Infra}      & Kubernetes, Terraform, AWS, PostgreSQL, Kafka \\
-  \textbf{Practices}  & Distributed systems, CI/CD, observability, TDD \\
-\end{tabularx}
 
-% ----- projects (optional) ----------------------------------
-\section{Projects}
+\noindent\begin{minipage}[t]{0.48\linewidth}
+  \skillhead{Statistics / Data Science}
+  \skill{Statistical programming}{5}
+  \skill{Data visualization}{5}
+  \skill{Descriptive statistics}{5}
+  \skill{Biostatistics}{5}
+  \skillhead{Languages}
+  \skill{English (Fluent)}{5}
+  \skill{French (Native)}{5}
+  \skill{Spanish (B2)}{3}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+  \skillhead{Software}
+  \skill{R (Tidyverse, Shiny)}{5}
+  \skill{Python}{4}
+  \skill{Spotfire / Tableau}{4}
+  \skill{SAS}{4}
+  \skillhead{Computing}
+  \skill{MS Office (incl. VBA)}{5}
+  \skill{Git \& Linux}{5}
+  \skill{Database / SQL}{4}
+  \skill{HTML, CSS, PHP}{3}
+\end{minipage}
+
+% ----- publications -----------------------------------------
+\section{Publications and Presentations}
 \begin{itemize}
-  \item \textbf{openmetrics-rs} - Rust library for Prometheus exposition,
-        1.2k GitHub stars.
-  \item \textbf{cv-latex} - this very CV, auto-built with GitHub Actions.
+  \item \href{https://www.sciencedirect.com/science/article/pii/S0378517324011256?via\%3Dihub}{Computer-Aided
+        formulation design for pharmaceutical drug product development, part 01:
+        Materials exploration through a visualization tool.} Piccione P.M.,
+        Lang M.N., Amado Becker F., Hofstetter A., Marchal S., Ly K., Legras V.,
+        Ewert A., Kohler D., Maurer R., Willecke N., Burwood R., Kroll P. (2024),
+        International Journal of Pharmaceutics, Volume 667, Part B.
+  \item \href{https://ascpt.onlinelibrary.wiley.com/doi/10.1002/cpt.3386}{PBPK
+        Modeling of Entrectinib and Its Active Metabolite to Derive Dose
+        Adjustments in Pediatric Populations Co-Administered with CYP3A4
+        Inhibitors.} Umehara K., Parrott N., Schindler E., Legras V. and
+        Meneses-Lorente G. (2024), Clin Pharmacol Ther, 116: 1130-1140.
+  \item \href{https://haematologica.org/article/view/11850}{Dexamethasone is
+        associated with reduced frequency and intensity of cytokine release
+        syndrome compared with alternative corticosteroid regimens as
+        premedication for glofitamab in patients with relapsed/refractory large
+        B-cell lymphoma} (sunburst plot support).
+  \item \href{https://phuse.s3.eu-central-1.amazonaws.com/Archive/2023/Connect/EU/Birmingham/PRE_DV02.pdf}{Revolutionizing
+        Data Exploration: An Interactive Journey through R Shiny.} Legras V.,
+        PHUSE 2023.
+  \item \href{https://phuse.s3.eu-central-1.amazonaws.com/Archive/2024/Connect/EU/Strasbourg/PRE_SM06.pdf}{R
+        Scripts to Streamline Non-Compartmental Analysis (NCA).} Legras V.,
+        Suekuer E., PHUSE 2024 (aNCA open-source).
+  \item \href{https://www.page-meeting.org/wp-content/uploads/pdf_assets/11030-abstract.pdf}{Sunburst
+        Plots for Analysing the Impact of Drugs on Cytokine Release Syndrome
+        (CRS) Management.} Legras V., PAGE 2024. Sunburst visualization method
+        contributed to \href{https://pubmed.ncbi.nlm.nih.gov/40646322/}{Hipp
+        J.F. et al., The UBE3A-ATS antisense oligonucleotide rugonersen in
+        children with Angelman syndrome: a phase 1 trial, Nat Med 2025;
+        31(9):2936-2945}.
+  \item \href{https://phuse.s3.eu-central-1.amazonaws.com/Archive/2025/Connect/EU/Hamburg/PRE_SM05.pdf}{Automated
+        QC Framework for Reliable ADNCA Dataset Generation with admiral.}
+        Legras V., Aspridis L., PHUSE 2025.
 \end{itemize}
+
+% ----- hobbies ----------------------------------------------
+\section{Hobbies}
+Surfing, Basketball (team), Cycling, Drawing.
 
 \end{document}
