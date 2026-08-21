@@ -182,11 +182,11 @@
 }
 
 \ifphoto
-  \noindent\begin{minipage}[c]{0.26\linewidth}
-    \raggedright\headerphoto
+  \noindent\begin{minipage}[c]{2.7cm}% width = photo width, no extra gap
+    \headerphoto
   \end{minipage}%
-  \hspace{0.167cm}% margin between photo and text
-  \begin{minipage}[c]{0.70\linewidth}
+  \hspace{0.4cm}% margin between photo and text
+  \begin{minipage}[c]{\dimexpr\linewidth-2.7cm-0.4cm\relax}
     \raggedright\headertext
   \end{minipage}
   \vspace{4pt}
