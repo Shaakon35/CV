@@ -16,7 +16,7 @@
 % Requires the Latin Modern OpenType fonts (fonts-lmodern; installed in CI).
 \usepackage{fontspec}
 \setmainfont{Latin Modern Roman}[Mapping=, Ligatures=NoCommon]
-\usepackage[margin=1.4cm]{geometry}
+\usepackage[margin=1.2cm]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{xcolor}
@@ -44,6 +44,17 @@
 % Company logo shown next to a role title. \rolelogo{logo}
 \newcommand{\rolelogo}[1]{\logoifexists{#1}{12pt}}
 
+% Header photo. Drop your portrait at assets/photo.jpg (or .png). If absent,
+% the header simply uses the full width for text. A photo is fine for CVs in
+% CH/EU; it lives in an image, so it never affects the ATS text layer.
+\newcommand{\headerphoto}{%
+  \IfFileExists{assets/photo.jpg}{\includegraphics[width=2.6cm]{assets/photo.jpg}}{%
+  \IfFileExists{assets/photo.png}{\includegraphics[width=2.6cm]{assets/photo.png}}{}}%
+}
+% Boolean: true if a portrait photo file exists.
+\newif\ifphoto
+\IfFileExists{assets/photo.jpg}{\phototrue}{\IfFileExists{assets/photo.png}{\phototrue}{\photofalse}}
+
 % ATS-safe list marker: a plain hyphen, not a bullet glyph.
 \renewcommand{\labelitemi}{-}
 
@@ -59,26 +70,24 @@
 \titleformat{\section}
   {\large\bfseries\color{accent}}
   {}{0em}{}[\color{accent}\titlerule]
-\titlespacing{\section}{0pt}{8pt}{4pt}
+\titlespacing{\section}{0pt}{6pt}{3pt}
 
 % ----- helpers ----------------------------------------------
 % \role{title}{org, location}{dates}          - no logo
 % \rolel{title}{org, location}{dates}{logo}   - with a logo next to the title
 \newcommand{\role}[3]{%
-  \vspace{3pt}
+  \vspace{2pt}
   \noindent\begin{tabularx}{\linewidth}{@{}Xr@{}}
     \textbf{#1} & \textcolor{muted}{#3} \\
     \textit{#2} & \\
   \end{tabularx}%
-  \vspace{1pt}
 }
 \newcommand{\rolel}[4]{%
-  \vspace{3pt}
+  \vspace{2pt}
   \noindent\begin{tabularx}{\linewidth}{@{}Xr@{}}
     \textbf{#1}~\rolelogo{#4} & \textcolor{muted}{#3} \\
     \textit{#2} & \\
   \end{tabularx}%
-  \vspace{1pt}
 }
 
 % \skill{name}{level 1-5} - drawn bar, leaves no characters in the text layer
@@ -106,18 +115,32 @@
 \begin{document}
 
 % ----- header -----------------------------------------------
-\begin{center}
+% Two columns: name + contact on the left, portrait photo on the right.
+% Falls back to a centered, full-width text block if no photo is present.
+\newcommand{\headertext}{%
   {\Huge\bfseries\color{accent} Valentin Legras}\\[4pt]
-  {\large\color{muted} Senior Data Scientist and Product Owner}\\[5pt]
+  {\large\color{muted} Senior Data Scientist and Product Owner}\\[6pt]
   % Plain-text contact line (no icon fonts).
-  Riehenstrasse 125, 4058 Basel, Switzerland \quad
-  +41 79 345 68 95 \\[3pt]
-  % Header links: each shows a small logo (if provided in assets/logos/) that is
-  % clickable, plus readable ASCII text so Workday autofill still works.
-  \linklogo{https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=valentin.legras2@gmail.com}{gmail}{valentin.legras2@gmail.com}\quad
-  \linklogo{https://www.linkedin.com/in/valentin-legras/}{linkedin}{linkedin.com/in/valentin-legras}\quad
-  \linklogo{https://github.com/Shaakon35}{github}{github.com/Shaakon35}
-\end{center}
+  Riehenstrasse 125, 4058 Basel, Switzerland\\[2pt]
+  +41 79 345 68 95 \\[4pt]
+  % Header links: each shows a small logo that is clickable, plus readable ASCII
+  % text so Workday autofill still works.
+  \linklogo{https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=valentin.legras2@gmail.com}{gmail}{valentin.legras2@gmail.com}\\[2pt]
+  \linklogo{https://www.linkedin.com/in/valentin-legras/}{linkedin}{linkedin.com/in/valentin-legras}\\[2pt]
+  \linklogo{https://github.com/Shaakon35}{github}{github.com/Shaakon35}%
+}
+
+\ifphoto
+  \noindent\begin{minipage}[c]{0.72\linewidth}
+    \raggedright\headertext
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.26\linewidth}
+    \raggedleft\headerphoto
+  \end{minipage}
+  \vspace{4pt}
+\else
+  \begin{center}\headertext\end{center}
+\fi
 
 % ----- work experience --------------------------------------
 \section{Work Experience}

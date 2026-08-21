@@ -1,7 +1,16 @@
 # Logos
 
-Drop logo image files here. The CV references them by exact basename and shows a
-plain-text fallback if a file is missing, so the CV always builds.
+All logos below are already downloaded and committed (header icons from Simple
+Icons; company wordmarks from Wikimedia Commons; aNCA hex from the pharmaverse
+repo). The CV references them by exact basename and shows a plain-text fallback
+if a file is ever missing, so the CV always builds.
+
+## Portrait photo
+
+The header shows a portrait if `assets/photo.jpg` (or `assets/photo.png`) exists.
+Drop your photo there and rebuild; the header switches to a two-column layout
+(text left, photo top-right). A photo never affects the ATS text layer because
+it is an image.
 
 Prefer **PNG** (transparent background) or **PDF**. Recommended height ~40-80 px;
 they are scaled down automatically.
