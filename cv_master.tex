@@ -41,8 +41,11 @@
 % Header link with logo + readable text.  \linklogo{url}{logo}{visible text}
 \newcommand{\linklogo}[3]{\href{#1}{\logoifexists{#2}{9pt}\,#3}}
 
-% Company logo shown next to a role title. \rolelogo{logo}
-\newcommand{\rolelogo}[1]{\logoifexists{#1}{12pt}}
+% Company logo shown next to a role title. \rolelogo{logo}{height}
+% Heights are chosen so every logo has the SAME visual area regardless of its
+% aspect ratio (area = aspect * height^2; target area ~170 pt^2).
+%   roche 9.6  anca 14.0  novartis 9.3  sanofi 12.8  cofidis 8.7
+\newcommand{\rolelogo}[2]{\logoifexists{#1}{#2}}
 
 % Header photo. Drop your portrait at assets/photo.jpg (or .png). If absent,
 % the header simply uses the full width for text. A photo is fine for CVs in
@@ -82,10 +85,11 @@
     \textit{#2} & \\
   \end{tabularx}%
 }
-\newcommand{\rolel}[4]{%
+% \rolel{title}{org}{dates}{logo}{logo height}
+\newcommand{\rolel}[5]{%
   \vspace{2pt}
   \noindent\begin{tabularx}{\linewidth}{@{}Xr@{}}
-    \textbf{#1}~\rolelogo{#4} & \textcolor{muted}{#3} \\
+    \textbf{#1}~\raisebox{-0.3\height}{\rolelogo{#4}{#5}} & \textcolor{muted}{#3} \\
     \textit{#2} & \\
   \end{tabularx}%
 }
@@ -119,15 +123,14 @@
 % Falls back to a centered, full-width text block if no photo is present.
 \newcommand{\headertext}{%
   {\Huge\bfseries\color{accent} Valentin Legras}\\[4pt]
-  {\large\color{muted} Senior Data Scientist and Product Owner}\\[6pt]
+  {\large\color{muted} Senior Data Scientist}\\[6pt]
   % Plain-text contact line (no icon fonts).
-  Riehenstrasse 125, 4058 Basel, Switzerland\\[2pt]
-  +41 79 345 68 95 \\[4pt]
-  % Header links: each shows a small logo that is clickable, plus readable ASCII
-  % text so Workday autofill still works.
-  \linklogo{https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=valentin.legras2@gmail.com}{gmail}{valentin.legras2@gmail.com}\\[2pt]
-  \linklogo{https://www.linkedin.com/in/valentin-legras/}{linkedin}{linkedin.com/in/valentin-legras}\\[2pt]
-  \linklogo{https://github.com/Shaakon35}{github}{github.com/Shaakon35}%
+  Rixheimerstrasse 19, 4055 Basel, Switzerland\\[2pt]
+  +41 79 345 68 95 \\[5pt]
+  % Header links: clickable logos only, on one line separated by two spaces.
+  \href{mailto:valentin.legras2@gmail.com}{\logoifexists{gmail}{11pt}}\ \ %
+  \href{https://www.linkedin.com/in/valentin-legras/}{\logoifexists{linkedin}{11pt}}\ \ %
+  \href{https://github.com/Shaakon35}{\logoifexists{github}{11pt}}%
 }
 
 \ifphoto
@@ -145,7 +148,7 @@
 % ----- work experience --------------------------------------
 \section{Work Experience}
 
-\rolel{Senior Data Scientist}{F. Hoffmann-La Roche, Basel, Switzerland}{2020 to now}{roche}
+\rolel{Senior Data Scientist}{F. Hoffmann-La Roche, Basel, Switzerland}{2020 to now}{roche}{9.6pt}
 \begin{itemize}
   \item Engineered end-to-end PK/PD analysis workflows, from data acquisition
         and preparation to modeling and reporting, across multiple therapeutic
@@ -171,7 +174,7 @@
         modeling and simulation activities.
 \end{itemize}
 
-\rolel{\href{https://github.com/pharmaverse/aNCA}{aNCA} Product Owner}{F. Hoffmann-La Roche, Basel, Switzerland}{2023 to now}{anca}
+\rolel{\href{https://github.com/pharmaverse/aNCA}{aNCA} Product Owner}{F. Hoffmann-La Roche, Basel, Switzerland}{2023 to now}{anca}{14pt}
 \begin{itemize}
   \item Directed the end-to-end product lifecycle of the 'aNCA' open-source R
         package using an Agile/Scrum framework, driving it from concept to
@@ -193,7 +196,7 @@
         interpretation bot (Python).
 \end{itemize}
 
-\rolel{IT/Data Science Developer}{F. Hoffmann-La Roche, Basel, Switzerland}{March to August 2020}{roche}
+\rolel{IT/Data Science Developer}{F. Hoffmann-La Roche, Basel, Switzerland}{March to August 2020}{roche}{9.6pt}
 \begin{itemize}
   \item Translated pharma scientists' requirements into IT/Data science tasks.
   \item Deployed several tools with R Shiny (data visualization) to support
@@ -204,7 +207,7 @@
   \item Automated PowerPoint reports with R (officer package) for daily reports.
 \end{itemize}
 
-\rolel{Data Scientist}{COFIDIS, Lille, France}{Oct 2019 to Feb 2020}{cofidis}
+\rolel{Data Scientist}{COFIDIS, Lille, France}{Oct 2019 to Feb 2020}{cofidis}{8.7pt}
 \begin{itemize}
   \item Data cleaning, data analysis, and data science on customer loan data
         with R.
@@ -214,7 +217,7 @@
         and completed contracts.
 \end{itemize}
 
-\rolel{Biostatistical Application Developer}{Novartis AG, Basel, Switzerland}{May to Aug 2019}{novartis}
+\rolel{Biostatistical Application Developer}{Novartis AG, Basel, Switzerland}{May to Aug 2019}{novartis}{9.3pt}
 \begin{itemize}
   \item Developed an R Shiny application to visualize clinical data (tables,
         figures and listings) dynamically and interactively during DMC (Data
@@ -226,7 +229,7 @@
         formats).
 \end{itemize}
 
-\rolel{SAS Developer}{Sanofi R\&D, Paris, France}{June to Aug 2018}{sanofi}
+\rolel{SAS Developer}{Sanofi R\&D, Paris, France}{June to Aug 2018}{sanofi}{12.8pt}
 \begin{itemize}
   \item Created a tool to automate data mapping (precise structure) and generated
         XML files for an artificial intelligence project.
@@ -236,7 +239,7 @@
   \item Used SDTM/ADaM formats and specifications (metadata files).
 \end{itemize}
 
-\rolel{SAS and IT Developer}{Sanofi R\&D, Paris, France}{April to Aug 2017}{sanofi}
+\rolel{SAS and IT Developer}{Sanofi R\&D, Paris, France}{April to Aug 2017}{sanofi}{12.8pt}
 \begin{itemize}
   \item Adapted SAS programs to a new statistical environment.
   \item Worked on applications to optimize, improve and develop SAS programs on
