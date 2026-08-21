@@ -1,0 +1,18 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+
+# Local preview images
+preview*.png
+*_preview*.png
+
+# Note: PDFs (cv_master.pdf and tailored cv.pdf files) are intentionally
+# committed so you always have a ready-to-send copy. Remove *.pdf here if you
+# prefer to rely only on the CI-built artifacts.
