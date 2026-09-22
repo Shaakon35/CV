@@ -1,0 +1,98 @@
+%==============================================================
+%  COVER LETTER - Principal Machine Learning Scientist, Frontier Research
+%  Tailored from cover_letter_master.tex. Target company is NOT named
+%  anywhere (per tailor-cv skill rule). Build: tectonic cover_letter.tex
+%==============================================================
+\documentclass[11pt,a4paper]{article}
+
+% Tectonic uses the XeTeX engine. fontspec keeps the PDF text layer ATS-safe:
+%  - Ligatures=NoCommon disables fi/fl (they otherwise become single glyphs)
+%  - Mapping= keeps ' straight (U+0027) and -- as two hyphens
+% Requires the Latin Modern OpenType fonts (fonts-lmodern; installed in CI).
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}[Mapping=, Ligatures=NoCommon]
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+% ATS-safe list marker: a plain hyphen, not a bullet glyph.
+\renewcommand{\labelitemi}{-}
+
+\definecolor{accent}{HTML}{2C3E50}
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}
+\titlespacing{\section}{0pt}{7pt}{3pt}
+\setlist[itemize]{leftmargin=1.4em, itemsep=2pt, topsep=2pt}
+\pagestyle{empty}
+
+% ---- PER-APPLICATION VARIABLES -----------------------------
+\newcommand{\Position}{Principal Machine Learning Scientist, Frontier Research}
+\newcommand{\SignDate}{22/09/2026}
+% ------------------------------------------------------------
+
+\begin{document}
+
+{\Large\bfseries\color{accent} Valentin Legras}\\[8pt]
+
+Dear Hiring Team,
+
+\section{About myself}
+I am a Senior Data Scientist with 7+ years of pharmaceutical data science
+experience across clinical pharmacometrics, PK/PD workflows, and reusable
+scientific software. I build reproducible R and Python analysis tools, machine
+learning models, and data products that help scientists turn complex clinical
+and experimental data into decisions. I am applying for the \Position{} role
+because it sits at the intersection of rigorous machine learning, open science,
+and drug-development impact.
+
+\section{Why I fit the role}
+The role calls for scientists who can frame difficult biological questions,
+design experiments, write reusable code, evaluate results, communicate clearly,
+and collaborate across a distributed research organization. My strongest fit is
+on the applied scientific software and drug-development side:
+
+\begin{itemize}
+  \item \textbf{Drug-development data science:} I have delivered PK/PD,
+        pharmacometric, and clinical data workflows across Oncology and
+        Neuroscience Phase 1 to 3 studies, partnering with clinical,
+        statistical, and pharmacometric teams.
+  \item \textbf{Reusable scientific code:} I founded and led aNCA, an
+        open-source R package now used by 120+ clinical and pre-clinical
+        scientists, establishing version control, testing, documentation, code
+        review, CI/CD, and regulatory-grade development standards.
+  \item \textbf{Machine learning and evaluation:} I have built and evaluated
+        machine learning models including Logistic Regression, Gradient
+        Boosting, and Random Forest, and used explainable-AI techniques such as
+        feature importance and SHAP to make model behavior interpretable.
+  \item \textbf{Experiment-to-impact workflow:} I design reproducible pipelines
+        from data acquisition and preparation through analysis, review,
+        reporting, and stakeholder decision making, reducing manual effort by
+        90 percent in core workflows.
+  \item \textbf{Scientific communication:} I present technical work externally
+        at PHUSE and PAGE, translate scientific requirements into engineering
+        plans, and lead cross-functional teams around shared analytical tools.
+\end{itemize}
+
+\section{What I would bring}
+My background is strongest in applied pharmaceutical data science, scientific
+software engineering, and practical machine learning rather than in theoretical
+generative modeling research. That said, I bring a rare combination of domain
+fluency, hands-on implementation, open-source product ownership, and the ability
+to scale reproducible analytical workflows in a regulated scientific
+environment. I would contribute immediately to experiment design, reusable code,
+evaluation discipline, collaboration with scientists, and translation of machine
+learning methods into tools that support medicine development.
+
+I would welcome the chance to discuss where this applied ML and scientific
+software profile could best support your Frontier Research agenda.
+
+\vspace{6pt}
+Sincerely\\[6pt]
+Valentin Legras\\
+\SignDate{}
+
+\end{document}
