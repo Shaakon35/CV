@@ -1,0 +1,18 @@
+Principal Machine Learning Scientist, Frontier Research, AI for Drug Discovery
+
+Source posting provided by the candidate on 22/09/2026. Target employer name
+has been redacted for application discretion.
+
+The role develops theoretical frameworks and algorithms for sampling and
+generative modeling, contributes to publications and scientific conferences,
+and carries out research experiments, reusable-code development, evaluations,
+and result organization in a large globally distributed team.
+
+Required: PhD in Mathematics, Physics, Computer Science, Statistics, Machine
+Learning, or a related discipline; 2 to 7 years of relevant experience; a strong
+publication record in generative modeling, including journals such as JMLR and
+peer-reviewed ML conferences including NeurIPS, ICML, ICLR, and COLT; strong
+communication and collaboration. Preferred: theoretical research publications.
+
+Locations: South San Francisco, New York City, or Basel. Relocation benefits
+are not available.
