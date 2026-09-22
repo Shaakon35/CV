@@ -1,6 +1,6 @@
 ---
 name: tailor-cv
-description: Tailor the master CV to a specific job offer, producing an ATS-safe, human-sounding LaTeX CV and PDF. Enforces Workday-safe characters (no smart dashes, quotes, arrows, math symbols, or accents that break resume autofill) and maximizes ATS keyword match against the job description while keeping the writing authentic enough to pass AI-detection screens. Use EVERY time the user asks to redo, tailor, adapt, rewrite, or generate a CV or resume for a job. Triggers on "redo my CV", "tailor my CV", "adapt my resume", "make a CV for this job", "new CV", "CV for <company>", "rewrite my resume".
+description: Tailor the master CV and cover letter to a specific job offer, producing ATS-safe, human-sounding LaTeX sources and PDFs with the repository's canonical per-application artifact set. Enforces Workday-safe characters (no smart dashes, quotes, arrows, math symbols, or accents that break resume autofill) and maximizes ATS keyword match against the job description while keeping the writing authentic enough to pass AI-detection screens. Use EVERY time the user asks to redo, tailor, adapt, rewrite, or generate a CV or resume for a job. Triggers on "redo my CV", "tailor my CV", "adapt my resume", "make a CV for a job", "new CV", "CV for a company", "rewrite my resume".
 ---
 
 # Tailor CV
@@ -12,6 +12,7 @@ year folder. Always produce ATS-safe, authentic output.
 
 ```
 cv_master.tex        # master CV - source of truth, edit rarely
+cover_letter_master.tex # master cover letter - source of truth, edit rarely
 2026/ 2027/ 2028/    # one subfolder per application, per year
 .ona/skills/tailor-cv/
   scripts/ats_sanitize.py            # ASCII sanitizer (Workday-safe)
@@ -34,8 +35,24 @@ From the job offer, list: exact job title, required hard skills, tools, methods,
 certifications, and preferred items. Preserve the offer's exact wording. Write
 them to `<year>/<company-role>/keywords.md`.
 
-### 4. Tailor the content
-Copy `cv_master.tex` to `<year>/<company-role>/cv.tex`, then adapt:
+### 4. Create the complete application artifact set
+Create all per-application deliverables in `<year>/<company-role>/`.
+
+Use privacy-safe, role-specific filenames that never include the target
+employer's name:
+- CV source: `<year>/<company-role>/CV_ValentinLegras_<ROLE>.tex`
+- CV PDF: `<year>/<company-role>/CV_ValentinLegras_<ROLE>.pdf`
+- Cover letter source: `<year>/<company-role>/cover_letter.tex`
+- Cover letter PDF: `<year>/<company-role>/cover_letter.pdf`
+- Offer notes: `<year>/<company-role>/job-offer.txt`
+- Keyword coverage: `<year>/<company-role>/keywords.md`
+
+For `<ROLE>`, use a short ASCII role token such as `PKS`, `AIDD`,
+`Clinical_Data_Science`, or `Pharmacometrics`. Do not leave the final CV only as
+`cv.tex`, and do not use the target company name in the filename.
+
+Copy `cv_master.tex` to the role-named CV source, copy
+`cover_letter_master.tex` to `cover_letter.tex`, then adapt:
 - Mirror the job title in the summary/target line if the user qualifies.
 - Reorder and rephrase existing experience to surface the required keywords in
   the summary, skills, and most-recent-role bullets.
@@ -51,15 +68,20 @@ Copy `cv_master.tex` to `<year>/<company-role>/cv.tex`, then adapt:
   "<Company> PKS Data Scientist". This applies ONLY to the target employer -
   the user's genuine PAST employers (including in `cv_master.tex`) must be kept
   by name as real work history.
+- Tailor the cover letter to the same role using only factual content from the
+  master CV. If the role has material gaps, state the fit honestly rather than
+  pretending full qualification.
 
 ### 5. Enforce ATS-safe characters (mandatory)
 Rewrite the tailored source to ASCII, then verify it is clean:
 ```
-python3 .ona/skills/tailor-cv/scripts/ats_sanitize.py --fix  <year>/<company-role>/cv.tex
-python3 .ona/skills/tailor-cv/scripts/ats_sanitize.py --check <year>/<company-role>/cv.tex
+python3 .ona/skills/tailor-cv/scripts/ats_sanitize.py --fix  <year>/<company-role>/CV_ValentinLegras_<ROLE>.tex
+python3 .ona/skills/tailor-cv/scripts/ats_sanitize.py --fix  <year>/<company-role>/cover_letter.tex
+python3 .ona/skills/tailor-cv/scripts/ats_sanitize.py --check <year>/<company-role>/CV_ValentinLegras_<ROLE>.tex
+python3 .ona/skills/tailor-cv/scripts/ats_sanitize.py --check <year>/<company-role>/cover_letter.tex
 ```
 The `--check` MUST exit 0 (report "Clean"). If it flags characters, fix them and
-re-check. Do not deliver a CV that fails this check.
+re-check. Do not deliver a CV or cover letter that fails this check.
 
 Note: `--fix` strips accents and non-ASCII from the LaTeX source. Keep any
 required LaTeX commands (e.g. `\href`) intact; if the CV legitimately needs an
@@ -68,15 +90,18 @@ accented byte, then re-run `--check`.
 
 ### 6. Build the PDF
 ```
-tectonic <year>/<company-role>/cv.tex
+tectonic <year>/<company-role>/CV_ValentinLegras_<ROLE>.tex
+tectonic <year>/<company-role>/cover_letter.tex
 ```
-If Tectonic is missing, install it (see repo README). Then render a preview
-image with `pdftoppm -png -r 130 cv.pdf preview` and show it inline.
+If Tectonic is missing, install it (see repo README) or use an equivalent XeLaTeX
+build path if Tectonic is unavailable. Then render a preview image of the CV
+with `pdftoppm -png -r 130 CV_ValentinLegras_<ROLE>.pdf preview` and show it
+inline.
 
 ### 6a. Enforce the 2-page limit (mandatory)
 The CV must NEVER exceed 2 pages. After building, check the page count:
 ```
-pdfinfo <year>/<company-role>/cv.pdf | grep Pages
+pdfinfo <year>/<company-role>/CV_ValentinLegras_<ROLE>.pdf | grep Pages
 ```
 If it reports more than 2 pages, tighten until it fits 2, in this order (least
 destructive first) and rebuild after each change:
@@ -91,7 +116,8 @@ checks (steps 5 and 7) after any edit. Do not deliver a CV over 2 pages.
 Confirm the PDF's extracted text is ASCII and readable (the parser sees this,
 not the layout):
 ```
-pdftotext <year>/<company-role>/cv.pdf - | python3 .ona/skills/tailor-cv/scripts/ats_sanitize.py --check -
+pdftotext <year>/<company-role>/CV_ValentinLegras_<ROLE>.pdf - | python3 .ona/skills/tailor-cv/scripts/ats_sanitize.py --check -
+pdftotext <year>/<company-role>/cover_letter.pdf - | python3 .ona/skills/tailor-cv/scripts/ats_sanitize.py --check -
 ```
 
 ### 8. Report keyword coverage
@@ -99,10 +125,14 @@ Update `keywords.md` marking each required keyword as covered and where it
 appears. Tell the user any required keyword you could NOT cover honestly.
 
 ## Definition of done
-- Tailored `cv.tex`, built `cv.pdf`, `job-offer.txt`, and `keywords.md` exist in
-  `<year>/<company-role>/`.
-- `ats_sanitize.py --check` on both the `.tex` and the extracted PDF text exit 0.
-- The built PDF is at most 2 pages (`pdfinfo ... | grep Pages` reports 1 or 2).
+- Tailored `CV_ValentinLegras_<ROLE>.tex`,
+  `CV_ValentinLegras_<ROLE>.pdf`, `cover_letter.tex`, `cover_letter.pdf`,
+  `job-offer.txt`, and `keywords.md` exist in `<year>/<company-role>/`.
+- The final CV filename does not include the target employer name.
+- `ats_sanitize.py --check` on both tailored `.tex` files and both extracted PDF
+  text layers exits 0.
+- The built CV PDF is at most 2 pages (`pdfinfo ... | grep Pages` reports 1 or
+  2). The cover letter should usually be 1 page unless the user asks otherwise.
 - No fabricated content; every required keyword either covered or flagged.
 - Inline PDF preview shown to the user.
 
