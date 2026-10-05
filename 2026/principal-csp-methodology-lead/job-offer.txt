@@ -1,0 +1,43 @@
+Target role: Principal C&SP Methodology Lead
+Function: Data Analytics & Computational Sciences
+Sub function: Biostatistics
+Location: Allschwil, Switzerland
+Date posted: Oct 01 2026
+Requisition: R-100820
+
+Redacted application notes:
+
+The role is a principal-level Clinical and Statistical Programming methodology
+position. It focuses on technical programming/development, clinical and/or
+statistical programming processes, tools, systems, project leadership, team
+leadership, innovation, automation, standard tools development, data management,
+risk based central monitoring, statistical analysis, visualization, regulatory
+submission of clinical data, and adoption of technical solutions.
+
+Key responsibilities include:
+- Lead methodology, innovation, and process improvement initiatives.
+- Collaborate with user communities and departmental/external stakeholders.
+- Develop and support standard technical solutions such as SAS macros, R
+  functions, R packages, and clinical programming tools.
+- Provide documentation, implementation plans, training, coaching, and support.
+- Work with Clinical and Statistical Programming, Data Management, Biostats,
+  Regulatory Medical Writing, IT, Data Sciences, CROs, vendors, and industry
+  groups.
+- Maintain awareness of clinical R&D processes, health authority guidance, GCP,
+  21 CFR Part 11, data privacy, and relevant technologies.
+- Possible people leadership, staff development, performance support, and work
+  allocation.
+
+Required and preferred profile:
+- Bachelor's degree or equivalent in computer science, mathematics, data
+  science, public health, or a relevant scientific field.
+- 6-8 years of programming experience with increasing responsibility.
+- Software development and testing experience with SAS macros, R functions,
+  R packages, Python, and other technical stacks.
+- Ability to translate complex problems into clear programming code/tools.
+- Project management, matrix leadership, communication, and negotiation.
+- CDISC standards, especially SDTM and ADaM.
+- Software Development Life Cycle (SDLC).
+- DevOps tools and cloud-based platforms.
+- Clinical data management, biostatistics, advanced analytics, compliance,
+  quality assurance, regulatory affairs, SOPs, data privacy, GCP, and SAS.
