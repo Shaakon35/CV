@@ -1,0 +1,45 @@
+Associate Director, Decision Intelligence
+
+The Associate Director, Decision Intelligence is a technical role responsible for developing advanced analytics and operations research capabilities to enable data-driven decision making and inform DSCS business operations. This role will focus on modeling, simulation and optimization frameworks to solve complex business problems.
+
+The Associate Director, Decision Intelligence will
+
+Translate business problems into mathematical models/frameworks for business process simulation and optimization.
+Design robust and sustainable analytics that can be seamlessly integrated with WebApps and/or Agents to streamline user interaction.
+Develop and implement probabilistic forecasting and stochastic optimization techniques to enable strategic decision making given uncertainty.
+Serve as a business analyst to develop business cases for new digital capabilities. Define and track KPIs aligned with the value proposition for digital transformation within DSCS.
+Contribute to designing, building, and implementing modern data foundations and pipelines.
+Contribute to the development of custom web applications (WebApps) that allow business users to seamlessly interact with data products and model outputs.
+Work strategically with Change Management and DSCS functional area SMEs to design and implement AI-enabled business processes.
+Contribute to the advancement of the DDT Decision Intelligence Strategic Roadmap, developing reusable methods and components that support decision intelligence capabilities across business domains.
+
+Primary Activities
+
+Requirements Translation Translate business processes and/or stakeholder requirements into accurate mathematical representations and technical specifications for corresponding models, agents and data products.
+Decision Intelligence Strategy Provide expertise in translating data and model outputs into clear, concise and interpretable business insights. Collaborate with Digital Operations Change Management and functional area SMEs to define and implement AI-enabled decision making processes across DSCS.
+Business case development In collaboration with DSCS SMEs, develop the business case and articulate the value proposition for new digital capabilities.
+Performance monitoring Define and track KPIs to monitor the value realized through digital transformation within the DSCS organization.
+Modeling & Simulation Develop mathematical models to simulate and/or optimize business processes using techniques including but not limited to machine learning, discrete event simulation and optimization.
+Data Engineering In collaboration with the Digital Operations Shared Services team, design, build, and optimize scalable data pipelines leveraging Databricks, Python, Dataverse, and advanced SQL. Transform raw data into contextualized, AI-ready data products.
+Agentic AI In collaboration with Agentic Intelligence team, design, test, and implement agentic AI workflows using tools like Copilot Studio to automate decision-making processes and generate proactive business insights.
+Web Application Development In collaboration with Digital Operations Shared Services team, develop and deploy user-friendly WebApps to support interaction with data and analytics.
+Development & Code Management Utilize modern development environments (VS Code) and AI coding assistants (Cline) alongside GitHub for robust version control of scripts, applications, and data models to ensure code quality.
+Systems Architecture Work closely with system architects to ensure scalable, secure, and efficient DevOps.
+Documentation & Enablement Document processes, code, mathematical models, data models, and system architectures; provide training and technical support to end-users as new digital capabilities are rolled out.
+
+Required Skills And Qualifications
+
+Experience 5+ years in data science, operations research, data engineering or a related highly technical role.
+Pharmaceutical development and/or clinical supply chain experience. Understanding of CMC development across modalities (ie small molecule, large molecule, vaccine) strongly preferred.
+Core Technical Stack Strong expertise in Python. Experience building and deploying advanced machine learning models. Databricks and MLOps experience preferred.
+Business Analysis Proven track record of gathering complex requirements from non-technical stakeholders and translating them into actionable, technical roadmaps.
+Agentic AI & Automation Familiarity with or strong interest in Agentic AI and integrating AI agents into workflows.
+DevOps & Developer Tools Proven experience with GitHub for version control. Highly comfortable leveraging AI-assisted development tools like Cline. Proficiency working in VScode or other equivalent integrated development environment. Experience deploying apps or agents in preferred.
+Analytical Skills Strong analytical and problem-solving skills to tackle complex business challenges and translate them into mathematical problem statements and corresponding technical solutions.
+Collaboration & Influence Demonstrated ability to develop strong, trust-based relationships to drive change and execute priorities with a diverse group of technical and non-technical stakeholders.
+Communication Excellent written and verbal communication skills; demonstrated ability to communicate technical concepts clearly to non-technical stakeholders, including senior executives.
+Independence Independent decision-making abilities with a proactive approach to leading projects and delivering results.
+
+Education and Skills
+
+Education PhD with 1+ year of experience or Bachelor degree with 5+ years of experience in Engineering, Operations Research, Data Science, or comparable technical field.
