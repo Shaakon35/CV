@@ -1,0 +1,103 @@
+%==============================================================
+%  COVER LETTER - master template
+%  Change ONLY the two variables below per application:
+%    \Position  - the role title (appears twice in the body)
+%    \SignDate  - the signature date (DD/MM/YYYY)
+%  Everything else stays constant. Build:  tectonic cover_letter_master.tex
+%==============================================================
+\documentclass[11pt,a4paper]{article}
+
+% Tectonic uses the XeTeX engine. fontspec keeps the PDF text layer ATS-safe:
+%  - Ligatures=NoCommon disables fi/fl (they otherwise become single glyphs)
+%  - not enabling Ligatures=TeX keeps ' straight (U+0027) and -- as two hyphens
+% Requires the Latin Modern OpenType fonts (fonts-lmodern; installed in CI).
+\usepackage{fontspec}
+% Keeps the PDF text layer ATS-safe under XeTeX/Tectonic:
+%  - Mapping=          empties the TeX input mapping, so straight ' and "
+%                      stay as U+0027 / U+0022 (no curly quotes)
+%  - Ligatures=NoCommon disables fi/fl ligatures (single-glyph parser breakers)
+% Requires the Latin Modern OpenType fonts (fonts-lmodern; installed in CI).
+\setmainfont{Latin Modern Roman}[Mapping=, Ligatures=NoCommon]
+\usepackage[margin=2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+% ATS-safe list marker: a plain hyphen, not a bullet glyph.
+\renewcommand{\labelitemi}{-}
+
+\definecolor{accent}{HTML}{2C3E50}
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}
+\titlespacing{\section}{0pt}{10pt}{4pt}
+\setlist[itemize]{leftmargin=1.4em, itemsep=3pt, topsep=3pt}
+\pagestyle{empty}
+
+% ---- PER-APPLICATION VARIABLES (edit these two only) --------
+\newcommand{\Position}{Submissions \& Regulatory Intelligence Manager}
+\newcommand{\SignDate}{17/10/2026}
+% ------------------------------------------------------------
+
+\begin{document}
+
+{\Large\bfseries\color{accent} Valentin Legras}\\[10pt]
+
+\section{About myself}
+As a Senior Data Scientist and Product Owner with 7+ years in regulated clinical
+data science, my goal is to secure the \Position{} position. My experience is
+centered on clinical data standards, CDISC SDTM/ADaM datasets, SAS/R clinical
+programming, QC, GxP documentation, and late-phase eSubmission support. I have
+worked on PK modeling package deliverables including ADPP, ADPC, PC, ADPPK, and
+QC-T across multiple Roche disease areas, including Oncology and
+Neuroscience/Rare Disease (NRD). I have also led the 'aNCA' open-source R
+package from concept to enterprise-wide adoption by 120+ clinical and
+pre-clinical scientists, delivering more than 2M CHF in annual savings.
+
+\section{My mindset}
+My working style is built around standards, automation, and practical adoption.
+I like to understand how teams really prepare data, where compliance checks slow
+down, and which reusable tools or guidance can make the process clearer. My best
+work combines hands-on clinical data expertise with product ownership, training,
+documentation, and measurable process improvement.
+
+I would like to explain why my current profile fits the \Position{} role. The
+role asks for someone who can connect regulatory requirements, clinical data
+standards, data management, statistical programming, and study-team support. This
+is close to the work I have done across Roche, Novartis, and Sanofi: building
+submission-ready clinical datasets, preparing eSubmission package components,
+documenting regulated workflows, and helping cross-functional teams understand
+how data deliverables need to be prepared and checked.
+
+\begin{itemize}
+  \item \textbf{Clinical data standards:} I create and QC SDTM, ADaM, NCA,
+        PK/PD, ADPP, ADPC, PC, ADPPK, and QC-T outputs from raw clinical data.
+  \item \textbf{Regulatory delivery:} My work includes electronic regulatory
+        submission support for late-phase PK modeling packages, FDA/EMA query
+        responses, GxP practices, documentation, code review, and
+        quality-controlled datasets.
+  \item \textbf{Process improvement:} I automated ADPC, ADNCA, and ADPP dataset
+        generation by converting legacy SAS programs into reproducible R
+        pipelines, reducing manual effort by 90\% and saving 30 data scientists
+        about 70\% of their time on these tasks.
+  \item \textbf{Leadership and enablement:} As Product Owner of 'aNCA', I led 7
+        developers, managed a 15+ stakeholder network, onboarded users, and
+        turned a manual workflow into regulated software used at scale.
+  \item \textbf{Communication across functions:} I regularly work with clinical,
+        data management, statistical programming, biostatistics, and
+        pharmacometric stakeholders, translating technical requirements into
+        clear deliverables, guidance, and reusable tools.
+\end{itemize}
+
+I am ready to apply this combination of clinical data standards, regulated
+delivery, automation, and stakeholder leadership to help study teams produce
+accurate, consistent, and compliant submission data packages.
+
+\vspace{10pt}
+Sincerely\\[6pt]
+Valentin Legras\\
+\SignDate{}
+
+\end{document}
