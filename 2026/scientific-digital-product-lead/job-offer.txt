@@ -1,0 +1,119 @@
+The Position
+
+A healthier future. It is what drives us to innovate. To continuously advance
+science and ensure everyone has access to the healthcare they need today and for
+generations to come. Creating a world where we all have more time with the
+people we love. That is what makes us Roche.
+
+Advances in AI, data, and computational sciences are transforming drug
+discovery and development. Roche's Research and Early Development organisations
+at Genentech (gRED) and Pharma (pRED) have demonstrated how these technologies
+accelerate R&D, leveraging data and novel computational models to drive impact.
+Seamless data sharing and access to models across gRED and pRED are essential
+to maximising these opportunities. The new Computational Sciences Center of
+Excellence (CS CoE) is a strategic, unified group whose goal is to harness this
+transformative power of data and Artificial Intelligence (AI) to assist our
+scientists in both pRED and gRED to deliver more innovative and transformative
+medicines for patients worldwide.
+
+The Data and Digital Catalysts (DDC) department within the CS CoE is a diverse,
+curious and action-driven team at the intersection of science, engineering, and
+computation and with ambition to advance our technical excellence. The team
+focuses on partnering with scientific communities to build a robust
+computational and data ecosystem that fuels scientific discovery and enables
+faster, data-informed decision-making. We aim to modernize our ability to
+acquire, store, link, share, find, and analyze data across the organization
+through scalable, integrated, and forward-looking solutions that truly make
+every data point count.
+
+Reporting to the Domain Head of Translation & Development within DDC, the
+Scientific Product Lead will play a pivotal role in fostering strong
+partnerships with RED stakeholders, developing strategic vision, a deep
+understanding of the "why," and prioritizing the "what" and "when" into an
+actionable roadmap that delivers meaningful outcomes. The Product Lead will work
+in close collaboration with DDC capability teams, shaping the "how" and aligning
+the "who" to deliver technical excellence, ensuring the development of
+integrated, innovative, and best-in-class products and platforms that accelerate
+scientific discovery within the REDs.
+
+The Opportunity
+
+Join Roche's Translation & Development domain and drive the next generation of
+Early Development Clinical Informatics. As Scientific Digital Product Lead, you
+will bridge cutting-edge science and digital innovation - translating complex
+clinical processes into scalable, automated, and AI-powered ecosystems. You will
+act as the strategic engine behind our data infrastructure, building sustainable
+pipelines that empower both scientists and advanced AI/ML research teams. If you
+possess deep domain expertise in clinical development, proven digital product
+leadership, and a passion for applying AI to accelerate therapeutic
+breakthroughs, this is your chance to join the Translation & Development team.
+
+Develop and refine the product family strategy within the Translation &
+Development domain, ensuring alignment with key strategic initiatives. Enable
+seamless integration of products (applications/platforms) into our evolving data
+and digital ecosystem while contributing to the consolidation and deprecation of
+legacy systems, resulting in a reduction of technical debt.
+
+Demonstrate a deep understanding of the needs of scientists, applying strong
+data and digital acumen to shape existing and the next generation of products.
+Leverage this understanding to guide cross-functional teams, nurture stakeholder
+partnerships, and manage their expectations, ensuring the execution of
+initiatives that deliver tangible value to our scientists.
+
+Collaborate with technical/engineering and data experts to guide and enable the
+development of clinical workflows that incorporate scalable automation and
+modular concepts, driving faster and higher-quality insights from translational
+and clinical data.
+
+Understand and translate the needs of scientists and the business into
+actionable plans. Drive business analysis, demonstrate advanced product and
+program/project management skills, prioritize tasks within a given framework,
+effectively manage budgets, and oversee external workforce contributions.
+
+Boldly advocate for future-facing solutions by anticipating emerging
+capabilities and integrating them into strategic roadmaps. Identify key trends,
+technologies, and methodologies to ensure innovation and long-term
+competitiveness.
+
+Build and cultivate trusted internal and external partnerships with
+collaborators, fostering effective teamwork in a global setting.
+
+Be willing to span the domain and contribute where needed, even outside of your
+core area of expertise.
+
+Who You Are
+
+The ideal candidate will meet many of the following requirements:
+
+You hold a Master's degree or PhD in life sciences, computer science, or a
+related field, ideally coupled with an MBA or equivalent qualification. You
+bring 5+ years of relevant professional experience in drug development, with a
+strong emphasis on digital product ownership and strategy.
+
+You have deep scientific knowledge in clinical processes and workflows, in
+particular around clinical trial execution. Technical and engineering skills
+(e.g., Python, vibe-coding workflow development) are a strong advantage.
+
+You are a quick learner who excels at embracing new challenges and driving
+scientific and computational innovation across complex scientific domains by
+applying rapidly evolving new AI technologies.
+
+You demonstrate a strong combination of strategic vision and operational
+excellence, balancing long-term planning with hands-on execution to deliver
+impactful outcomes. You excel in navigating highly ambiguous or evolving
+situations with adaptability and focus.
+
+You have a proven ability to lead large-scale, cross-functional projects
+involving multiple teams and stakeholders. Experience in platform strategy,
+advanced product management, business analysis, and change management is highly
+valued, with prior work in a drug discovery setting strongly preferred.
+
+You are an exceptional collaborator, capable of navigating complex
+organizational landscapes, communicating clearly across diverse audiences, and
+translating big-picture transformation strategies into actionable, incremental
+steps that drive measurable progress.
+
+You have a forward-thinking and agile mindset, with a passion for innovation and
+curiosity. You are adept at integrating cutting-edge technologies and
+methodologies into translation and development workflows, prioritizing value
+creation, and fostering a culture of continuous improvement.
